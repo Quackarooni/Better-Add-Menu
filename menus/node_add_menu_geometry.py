@@ -56,7 +56,6 @@ class NODE_MT_geometry_node_GEO_CURVE(ColumnMenu, Menu):
         self.draw_column(layout, menus=(NODE_MT_geometry_node_GEO_CURVE_READ,))
         self.draw_column(layout, menus=(NODE_MT_geometry_node_GEO_CURVE_WRITE, NODE_MT_geometry_node_GEO_CURVE_SAMPLE,))
         self.draw_column(layout, menus=(NODE_MT_geometry_node_GEO_CURVE_OPERATIONS,))
-        self.draw_column(layout, menus=(NODE_MT_geometry_node_GEO_PRIMITIVES_CURVE, NODE_MT_geometry_node_curve_topology,))
         
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
@@ -128,7 +127,7 @@ class NODE_MT_geometry_node_GEO_CURVE_OPERATIONS(Menu):
 
 class NODE_MT_geometry_node_GEO_PRIMITIVES_CURVE(Menu):
     bl_idname = "NODE_MT_geometry_node_GEO_PRIMITIVES_CURVE"
-    bl_label = "Primitives"
+    bl_label = "Curve"
 
     def draw(self, _context):
         layout = self.layout
@@ -145,7 +144,7 @@ class NODE_MT_geometry_node_GEO_PRIMITIVES_CURVE(Menu):
 
 class NODE_MT_geometry_node_curve_topology(Menu):
     bl_idname = "NODE_MT_geometry_node_curve_topology"
-    bl_label = "Topology"
+    bl_label = "Curve"
 
     def draw(self, _context):
         layout = self.layout
@@ -233,6 +232,26 @@ class NODE_MT_geometry_node_GEO_GEOMETRY_SAMPLE(Menu):
         node_add_menu.add_node_type(layout, "GeometryNodeSampleIndex")
         node_add_menu.add_node_type(layout, "GeometryNodeSampleNearest")
         #node_add_menu.draw_assets_for_catalog(layout, "Geometry/Sample")
+
+
+class NODE_MT_geometry_node_GEO_PRIMITIVES(ColumnMenu, Menu):
+    bl_idname = "NODE_MT_geometry_node_GEO_PRIMITIVES"
+    bl_label = "Primitives"
+
+    def draw(self, _context):
+        layout = self.layout.row()
+        self.draw_column(layout, menus=(NODE_MT_category_PRIMITIVES_MESH,))
+        self.draw_column(layout, menus=(NODE_MT_geometry_node_GEO_PRIMITIVES_CURVE,))
+
+
+class NODE_MT_geometry_node_GEO_TOPOLOGY(ColumnMenu, Menu):
+    bl_idname = "NODE_MT_geometry_node_GEO_TOPOLOGY"
+    bl_label = "Topology"
+
+    def draw(self, _context):
+        layout = self.layout.row()
+        self.draw_column(layout, menus=(NODE_MT_geometry_node_mesh_topology,))
+        self.draw_column(layout, menus=(NODE_MT_geometry_node_curve_topology,))
 
 
 class NODE_MT_geometry_node_GEO_INPUT(ColumnMenu, Menu):
@@ -347,10 +366,13 @@ class NODE_MT_geometry_node_GEO_MESH(ColumnMenu, Menu):
         layout = self.layout.row()
 
         self.draw_column(layout, menus=(NODE_MT_geometry_node_GEO_MESH_READ,))
-        self.draw_column(layout, menus=(NODE_MT_geometry_node_GEO_MESH_WRITE, NODE_MT_geometry_node_GEO_MESH_SAMPLE, NODE_MT_category_PRIMITIVES_MESH,))
+        self.draw_column(layout, menus=(
+            NODE_MT_geometry_node_GEO_MESH_WRITE, 
+            NODE_MT_geometry_node_GEO_MESH_SAMPLE, 
+            NODE_MT_category_GEO_UV,
+            ))
 
         self.draw_column(layout, menus=(NODE_MT_geometry_node_GEO_MESH_OPERATIONS,))
-        self.draw_column(layout, menus=(NODE_MT_geometry_node_mesh_topology, NODE_MT_category_GEO_UV,))
         
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
@@ -429,7 +451,7 @@ class NODE_MT_geometry_node_GEO_MESH_OPERATIONS(Menu):
 
 class NODE_MT_category_PRIMITIVES_MESH(Menu):
     bl_idname = "NODE_MT_category_PRIMITIVES_MESH"
-    bl_label = "Primitives"
+    bl_label = "Mesh"
 
     def draw(self, _context):
         layout = self.layout
@@ -446,7 +468,7 @@ class NODE_MT_category_PRIMITIVES_MESH(Menu):
 
 class NODE_MT_geometry_node_mesh_topology(Menu):
     bl_idname = "NODE_MT_geometry_node_mesh_topology"
-    bl_label = "Topology"
+    bl_label = "Mesh"
 
     def draw(self, _context):
         layout = self.layout
@@ -688,6 +710,9 @@ class NODE_MT_geometry_node_add_all(Menu):
         layout.menu("NODE_MT_category_GEO_POINT")
         layout.menu("NODE_MT_category_GEO_VOLUME")
         layout.separator()
+        layout.menu("NODE_MT_geometry_node_GEO_PRIMITIVES")
+        layout.menu("NODE_MT_geometry_node_GEO_TOPOLOGY")
+        layout.separator()
         layout.menu("NODE_MT_category_simulation")
         layout.separator()
         layout.menu("NODE_MT_geometry_node_GEO_MATERIAL")
@@ -720,6 +745,8 @@ classes = (
     NODE_MT_geometry_node_GEO_GEOMETRY_WRITE,
     NODE_MT_geometry_node_GEO_GEOMETRY_OPERATIONS,
     NODE_MT_geometry_node_GEO_GEOMETRY_SAMPLE,
+    NODE_MT_geometry_node_GEO_PRIMITIVES,
+    NODE_MT_geometry_node_GEO_TOPOLOGY,
     NODE_MT_geometry_node_GEO_INSTANCE,
     NODE_MT_geometry_node_GEO_MESH,
     NODE_MT_geometry_node_GEO_MESH_READ,
