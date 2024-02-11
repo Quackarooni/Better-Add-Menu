@@ -19,7 +19,7 @@ class ColumnMenu:
                 col.separator(factor=spacing)
 
             col.label(text=menu.bl_label)
-            col.separator(factor=spacing)
+            col.separator(factor=spacing + 0.15)
             col.menu_contents(menu.bl_idname)
     
         return col
