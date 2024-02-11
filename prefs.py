@@ -1,7 +1,6 @@
 import bpy
 from bpy.props import BoolProperty, EnumProperty, StringProperty
-from . import keymap_ui
-from .utils import fetch_user_preferences
+from .keymaps import keymap_layout
 
 
 class BetterAddMenuPreferences(bpy.types.AddonPreferences):
@@ -81,8 +80,10 @@ class BetterAddMenuPreferences(bpy.types.AddonPreferences):
 
     def draw(self, context):
         layout = self.layout
-        keymap_ui.draw_keyboard_shorcuts(self, layout, context)
-        return
+        keymap_layout.draw_keyboard_shorcuts(self, layout, context)
+
+
+keymap_layout.register_properties(preferences=BetterAddMenuPreferences)
 
 
 classes = (
@@ -94,8 +95,6 @@ def register():
     for cls in classes:
         bpy.utils.register_class(cls)
 
-    prefs = fetch_user_preferences()
-    prefs.property_unset("show_keymaps")
 
 def unregister():
     for cls in classes:
