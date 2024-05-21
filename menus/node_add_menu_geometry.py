@@ -602,6 +602,10 @@ class NODE_MT_category_GEO_UTILITIES_ROTATION(Menu):
         layout = self.layout
         node_add_menu.add_node_type(layout, "FunctionNodeAlignEulerToVector")
         node_add_menu.add_node_type(layout, "FunctionNodeInvertRotation")
+        props = node_add_menu.add_node_type(layout, "ShaderNodeMix", label=iface_("Mix Rotation"))
+        ops = props.settings.add()
+        ops.name = "data_type"
+        ops.value = "'ROTATION'"
         node_add_menu.add_node_type(layout, "FunctionNodeRotateEuler")
         node_add_menu.add_node_type(layout, "FunctionNodeRotateVector")
         add_separator(layout)
