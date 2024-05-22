@@ -9,7 +9,7 @@ from bpy.app.translations import (
     pgettext_iface as iface_,
 )
 
-from .utils import draw_asset_menu
+from .utils import add_separator, draw_asset_menu
 
 # only show input/output nodes when editing line style node trees
 def line_style_shader_nodes_poll(context):
@@ -354,15 +354,15 @@ class NODE_MT_shader_node_add_all(Menu):
         layout = self.layout
         layout.menu("NODE_MT_category_shader_input")
         layout.menu("NODE_MT_category_shader_output")
-        layout.separator()
+        add_separator(layout)
         layout.menu("NODE_MT_category_shader_color")
         layout.menu("NODE_MT_category_shader_converter")
         layout.menu("NODE_MT_category_shader_shader")
         layout.menu("NODE_MT_category_shader_texture")
         layout.menu("NODE_MT_category_shader_vector")
-        layout.separator()
+        add_separator(layout)
         layout.menu("NODE_MT_category_shader_script")
-        layout.separator()
+        add_separator(layout)
         layout.menu("NODE_MT_category_shader_group")
         layout.menu("NODE_MT_category_layout")
         

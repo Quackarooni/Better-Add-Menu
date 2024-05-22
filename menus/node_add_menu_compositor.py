@@ -33,7 +33,7 @@ class NODE_MT_category_compositor_input(ColumnMenu, Menu):
         node_add_menu.add_node_type(col, "CompositorNodeTexture")
 
         #if is_group:
-        #    layout.separator()
+        #    add_separator(col)
         #    node_add_menu.add_node_type(layout, "NodeGroupInput")
         
         self.draw_column(layout, menus=(NODE_MT_category_compositor_input_scene, ))
@@ -81,7 +81,7 @@ class NODE_MT_category_compositor_output(Menu):
         node_add_menu.add_node_type(layout, "CompositorNodeViewer")
 
         #if is_group:
-        #    layout.separator()
+        #    add_separator(col)
         #    node_add_menu.add_node_type(layout, "NodeGroupOutput")
 
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
@@ -139,7 +139,7 @@ class NODE_MT_category_compositor_color_mix(Menu):
         node_add_menu.add_node_type(layout, "CompositorNodeMixRGB", label=iface_("Mix Color"))
         node_add_menu.add_node_type(layout, "CompositorNodeCombineColor")
         node_add_menu.add_node_type(layout, "CompositorNodeSeparateColor")
-        layout.separator()
+        add_separator(layout)
         node_add_menu.add_node_type(layout, "CompositorNodeAlphaOver")
         node_add_menu.add_node_type(layout, "CompositorNodeZcombine")
         node_add_menu.draw_assets_for_catalog(layout, "Color/Mix")
@@ -198,7 +198,7 @@ class NODE_MT_category_compositor_filter_utilities(Menu):
         node_add_menu.add_node_type(layout, "CompositorNodeAntiAliasing")
         node_add_menu.add_node_type(layout, "CompositorNodeDenoise")
         node_add_menu.add_node_type(layout, "CompositorNodeDespeckle")
-        layout.separator()
+        add_separator(layout)
         node_add_menu.add_node_type(layout, "CompositorNodeDilateErode")
         node_add_menu.add_node_type(layout, "CompositorNodeInpaint")
 
@@ -240,10 +240,10 @@ class NODE_MT_category_compositor_mask(Menu):
         layout = self.layout
         node_add_menu.add_node_type(layout, "CompositorNodeCryptomatteV2")
         node_add_menu.add_node_type(layout, "CompositorNodeCryptomatte")
-        layout.separator()
+        add_separator(layout)
         node_add_menu.add_node_type(layout, "CompositorNodeBoxMask")
         node_add_menu.add_node_type(layout, "CompositorNodeEllipseMask")
-        layout.separator()
+        add_separator(layout)
         node_add_menu.add_node_type(layout, "CompositorNodeDoubleEdgeMask")
         node_add_menu.add_node_type(layout, "CompositorNodeIDMask")
 
@@ -273,14 +273,14 @@ class NODE_MT_category_compositor_transform(Menu):
         node_add_menu.add_node_type(layout, "CompositorNodeScale")
         node_add_menu.add_node_type(layout, "CompositorNodeTransform")
         node_add_menu.add_node_type(layout, "CompositorNodeTranslate")
-        layout.separator()
+        add_separator(layout)
         node_add_menu.add_node_type(layout, "CompositorNodeCornerPin")
         node_add_menu.add_node_type(layout, "CompositorNodeCrop")
-        layout.separator()
+        add_separator(layout)
         node_add_menu.add_node_type(layout, "CompositorNodeDisplace")
         node_add_menu.add_node_type(layout, "CompositorNodeFlip")
         node_add_menu.add_node_type(layout, "CompositorNodeMapUV")
-        layout.separator()
+        add_separator(layout)
         node_add_menu.add_node_type(layout, "CompositorNodeLensdist")
         node_add_menu.add_node_type(layout, "CompositorNodeMovieDistortion")
 
@@ -296,10 +296,10 @@ class NODE_MT_category_compositor_utilities(Menu):
         node_add_menu.add_node_type(layout, "CompositorNodeMapRange")
         node_add_menu.add_node_type(layout, "CompositorNodeMapValue")
         node_add_menu.add_node_type(layout, "CompositorNodeMath")
-        layout.separator()
+        add_separator(layout)
         node_add_menu.add_node_type(layout, "CompositorNodeLevels")
         node_add_menu.add_node_type(layout, "CompositorNodeNormalize")
-        layout.separator()
+        add_separator(layout)
         node_add_menu.add_node_type(layout, "CompositorNodeSwitch")
         node_add_menu.add_node_type(
             layout, "CompositorNodeSwitchView",
@@ -316,7 +316,7 @@ class NODE_MT_category_compositor_vector(Menu):
         layout = self.layout
         node_add_menu.add_node_type(layout, "CompositorNodeCombineXYZ")
         node_add_menu.add_node_type(layout, "CompositorNodeSeparateXYZ")
-        layout.separator()
+        add_separator(layout)
         node_add_menu.add_node_type(layout, "CompositorNodeNormal")
         node_add_menu.add_node_type(layout, "CompositorNodeCurveVec")
 
@@ -343,19 +343,19 @@ class NODE_MT_compositor_node_add_all(Menu):
         layout = self.layout
         layout.menu("NODE_MT_category_compositor_input")
         layout.menu("NODE_MT_category_compositor_output")
-        layout.separator()
+        add_separator(layout)
         layout.menu("NODE_MT_category_compositor_color")
         layout.menu("NODE_MT_category_compositor_filter")
-        layout.separator()
+        add_separator(layout)
         layout.menu("NODE_MT_category_compositor_keying")
         layout.menu("NODE_MT_category_compositor_mask")
-        layout.separator()
+        add_separator(layout)
         layout.menu("NODE_MT_category_compositor_tracking")
-        layout.separator()
+        add_separator(layout)
         layout.menu("NODE_MT_category_compositor_transform")
         layout.menu("NODE_MT_category_compositor_utilities")
         layout.menu("NODE_MT_category_compositor_vector")
-        layout.separator()
+        add_separator(layout)
         layout.menu("NODE_MT_category_compositor_group")
         layout.menu("NODE_MT_category_layout")
 
