@@ -32,10 +32,12 @@ def draw_node_group_add_menu(context, layout):
             not group.contains_tree(node_tree) and
             not group.name.startswith('.'))
     ]
-    layout.separator()
+    
     if len(groups) <= 0:
+        layout.separator()
         layout.label(text="No nodegroups available.")
     else:
+        layout.separator()
         for group in groups:
             props = add_node_type(layout, node_tree_group_type[group.bl_idname], label=group.name)
             ops = props.settings.add()
