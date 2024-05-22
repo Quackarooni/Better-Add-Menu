@@ -165,10 +165,11 @@ class NODE_MT_category_compositor_filter_blur(Menu):
 
     def draw(self, _context):
         layout = self.layout
-        node_add_menu.add_node_type(layout, "CompositorNodeBilateralblur")
         node_add_menu.add_node_type(layout, "CompositorNodeBlur")
-        node_add_menu.add_node_type(layout, "CompositorNodeBokehBlur")
         node_add_menu.add_node_type(layout, "CompositorNodeDefocus")
+        add_separator(layout)
+        node_add_menu.add_node_type(layout, "CompositorNodeBilateralblur")
+        node_add_menu.add_node_type(layout, "CompositorNodeBokehBlur")
         node_add_menu.add_node_type(layout, "CompositorNodeDBlur")
         node_add_menu.add_node_type(layout, "CompositorNodeVecBlur")
 
