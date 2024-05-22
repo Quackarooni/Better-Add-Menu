@@ -169,11 +169,7 @@ class NODE_MT_geometry_node_GEO_GEOMETRY(ColumnMenu, Menu):
 
         self.draw_column(layout, menus=(NODE_MT_geometry_node_GEO_GEOMETRY_READ,))
         self.draw_column(layout, menus=(NODE_MT_geometry_node_GEO_GEOMETRY_WRITE, NODE_MT_geometry_node_GEO_GEOMETRY_SAMPLE,))
-        col = self.draw_column(layout, menus=(NODE_MT_geometry_node_GEO_GEOMETRY_OPERATIONS,))
-
-        add_separator(col)
-        node_add_menu.add_node_type(col, "GeometryNodeGeometryToInstance")
-        node_add_menu.add_node_type(col, "GeometryNodeJoinGeometry")
+        self.draw_column(layout, menus=(NODE_MT_geometry_node_GEO_GEOMETRY_OPERATIONS,))
         
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
@@ -224,7 +220,11 @@ class NODE_MT_geometry_node_GEO_GEOMETRY_OPERATIONS(Menu):
         node_add_menu.add_node_type(layout, "GeometryNodeDeleteGeometry")
         node_add_menu.add_node_type(layout, "GeometryNodeSeparateGeometry")
         node_add_menu.add_node_type(layout, "GeometryNodeTransform")
+        add_separator(layout)
+        node_add_menu.add_node_type(layout, "GeometryNodeGeometryToInstance")
+        node_add_menu.add_node_type(layout, "GeometryNodeJoinGeometry")
         node_add_menu.add_node_type(layout, "GeometryNodeSeparateComponents")
+
         #node_add_menu.draw_assets_for_catalog(layout, "Geometry/Operations")
 
 
