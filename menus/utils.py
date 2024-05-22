@@ -1,4 +1,5 @@
 from bpy.types import Menu
+from bl_ui.node_add_menu import add_node_type
 
 spacing = 0.65
 
@@ -8,6 +9,38 @@ def draw_asset_menu(layout):
 
 def add_separator(layout):
     layout.separator(factor=spacing)
+
+def draw_node_group_add_menu(context, layout):
+    """Add items to the layout used for interacting with node groups."""
+    space_node = context.space_data
+    node_tree = space_node.edit_tree
+    all_node_groups = context.blend_data.node_groups
+
+    if node_tree in all_node_groups.values():
+        layout.separator()
+        add_node_type(layout, "NodeGroupInput")
+        add_node_type(layout, "NodeGroupOutput")
+
+    if not node_tree:
+        return
+    
+    from nodeitems_builtins import node_tree_group_type
+
+    groups = [
+        group for group in context.blend_data.node_groups
+        if (group.bl_idname == node_tree.bl_idname and
+            not group.contains_tree(node_tree) and
+            not group.name.startswith('.'))
+    ]
+    layout.separator()
+    if len(groups) <= 0:
+        layout.label(text="No nodegroups available.")
+    else:
+        for group in groups:
+            props = add_node_type(layout, node_tree_group_type[group.bl_idname], label=group.name)
+            ops = props.settings.add()
+            ops.name = "node_tree"
+            ops.value = "bpy.data.node_groups[%r]" % group.name
 
 class ColumnMenu:
     @staticmethod

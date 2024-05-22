@@ -10,7 +10,12 @@ from bpy.app.translations import (
     contexts as i18n_contexts,
 )
 
-from .utils import draw_asset_menu, add_separator, ColumnMenu
+from .utils import (
+    ColumnMenu, 
+    add_separator, 
+    draw_asset_menu, 
+    draw_node_group_add_menu
+    )
 
 class NODE_MT_geometry_node_GEO_ATTRIBUTE(Menu):
     bl_idname = "NODE_MT_geometry_node_GEO_ATTRIBUTE"
@@ -707,7 +712,7 @@ class NODE_MT_category_GEO_GROUP(Menu):
 
     def draw(self, context):
         layout = self.layout
-        node_add_menu.draw_node_group_add_menu(context, layout)
+        draw_node_group_add_menu(context, layout)
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
