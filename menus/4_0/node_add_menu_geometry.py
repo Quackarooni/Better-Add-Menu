@@ -10,7 +10,7 @@ from bpy.app.translations import (
     contexts as i18n_contexts,
 )
 
-from .utils import (
+from ..utils import (
     ColumnMenu, 
     add_separator, 
     draw_asset_menu, 

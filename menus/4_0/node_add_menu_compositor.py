@@ -9,7 +9,7 @@ from bpy.app.translations import (
     pgettext_iface as iface_,
 )
 
-from .utils import (
+from ..utils import (
     ColumnMenu, 
     add_separator, 
     draw_asset_menu, 

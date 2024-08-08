@@ -9,7 +9,7 @@ from bpy.app.translations import (
     pgettext_iface as iface_,
 )
 
-from .utils import add_separator, draw_asset_menu, draw_node_group_add_menu
+from ..utils import add_separator, draw_asset_menu, draw_node_group_add_menu
 
 # only show input/output nodes when editing line style node trees
 def line_style_shader_nodes_poll(context):
