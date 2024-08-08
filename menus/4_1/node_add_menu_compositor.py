@@ -7,6 +7,7 @@ from bpy.types import Menu
 from bl_ui import node_add_menu
 from bpy.app.translations import (
     pgettext_iface as iface_,
+    contexts as i18n_contexts,
 )
 
 from ..utils import (
@@ -82,7 +83,6 @@ class NODE_MT_category_compositor_output(Menu):
         layout = self.layout
         node_add_menu.add_node_type(layout, "CompositorNodeComposite")
         node_add_menu.add_node_type(layout, "CompositorNodeOutputFile")
-        node_add_menu.add_node_type(layout, "CompositorNodeSplitViewer")
         node_add_menu.add_node_type(layout, "CompositorNodeViewer")
 
         #if is_group:
@@ -259,6 +259,7 @@ class NODE_MT_category_compositor_mask(Menu):
 class NODE_MT_category_compositor_tracking(Menu):
     bl_idname = "NODE_MT_category_compositor_tracking"
     bl_label = "Tracking"
+    bl_translation_context = i18n_contexts.id_movieclip
 
     def draw(self, _context):
         layout = self.layout
@@ -306,6 +307,7 @@ class NODE_MT_category_compositor_utilities(Menu):
         node_add_menu.add_node_type(layout, "CompositorNodeLevels")
         node_add_menu.add_node_type(layout, "CompositorNodeNormalize")
         add_separator(layout)
+        node_add_menu.add_node_type(layout, "CompositorNodeSplit")
         node_add_menu.add_node_type(layout, "CompositorNodeSwitch")
         node_add_menu.add_node_type(
             layout, "CompositorNodeSwitchView",
