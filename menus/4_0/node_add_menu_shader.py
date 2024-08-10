@@ -56,7 +56,7 @@ def object_eevee_shader_nodes_poll(context):
 
 
 class NODE_MT_shader_input(Menu):
-    bl_idname = "NODE_MT_shader_input"
+    bl_idname = __qualname__
     bl_label = "Input"
 
     def draw(self, context):
@@ -88,7 +88,7 @@ class NODE_MT_shader_input(Menu):
 
 
 class NODE_MT_shader_output(Menu):
-    bl_idname = "NODE_MT_shader_output"
+    bl_idname = __qualname__
     bl_label = "Output"
 
     def draw(self, context):
@@ -123,7 +123,7 @@ class NODE_MT_shader_output(Menu):
 
 
 class NODE_MT_shader_shader(Menu):
-    bl_idname = "NODE_MT_shader_shader"
+    bl_idname = __qualname__
     bl_label = "Shader"
 
     def draw(self, context):
@@ -233,7 +233,7 @@ class NODE_MT_shader_shader(Menu):
 
 
 class NODE_MT_shader_color(Menu):
-    bl_idname = "NODE_MT_shader_color"
+    bl_idname = __qualname__
     bl_label = "Color"
 
     def draw(self, _context):
@@ -254,7 +254,7 @@ class NODE_MT_shader_color(Menu):
 
 
 class NODE_MT_shader_converter(Menu):
-    bl_idname = "NODE_MT_shader_converter"
+    bl_idname = __qualname__
     bl_label = "Converter"
 
     def draw(self, context):
@@ -280,7 +280,7 @@ class NODE_MT_shader_converter(Menu):
 
 
 class NODE_MT_shader_texture(Menu):
-    bl_idname = "NODE_MT_shader_texture"
+    bl_idname = __qualname__
     bl_label = "Texture"
 
     def draw(self, _context):
@@ -305,7 +305,7 @@ class NODE_MT_shader_texture(Menu):
 
 
 class NODE_MT_shader_vector(Menu):
-    bl_idname = "NODE_MT_shader_vector"
+    bl_idname = __qualname__
     bl_label = "Vector"
 
     def draw(self, _context):
@@ -325,7 +325,7 @@ class NODE_MT_shader_vector(Menu):
 
 
 class NODE_MT_shader_script(Menu):
-    bl_idname = "NODE_MT_shader_script"
+    bl_idname = __qualname__
     bl_label = "Script"
 
     def draw(self, _context):
@@ -337,7 +337,7 @@ class NODE_MT_shader_script(Menu):
 
 
 class NODE_MT_shader_group(Menu):
-    bl_idname = "NODE_MT_shader_group"
+    bl_idname = __qualname__
     bl_label = "Group"
 
     def draw(self, context):
@@ -347,7 +347,7 @@ class NODE_MT_shader_group(Menu):
 
 
 class NODE_MT_shader_node_add_all(Menu):
-    bl_idname = "NODE_MT_shader_node_add_all"
+    bl_idname = __qualname__
     bl_label = "Add"
 
     def draw(self, context):

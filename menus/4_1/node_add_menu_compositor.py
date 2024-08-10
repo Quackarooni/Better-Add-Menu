@@ -18,7 +18,7 @@ from ..utils import (
     )
 
 class NODE_MT_compositor_input(ColumnMenu, Menu):
-    bl_idname = "NODE_MT_compositor_input"
+    bl_idname = __qualname__
     bl_label = "Input"
 
     def draw(self, context):
@@ -48,7 +48,7 @@ class NODE_MT_compositor_input(ColumnMenu, Menu):
 
 
 class NODE_MT_compositor_input_constant(Menu):
-    bl_idname = "NODE_MT_compositor_input_constant"
+    bl_idname = __qualname__
     bl_label = "Constant"
 
     def draw(self, _context):
@@ -60,7 +60,7 @@ class NODE_MT_compositor_input_constant(Menu):
 
 
 class NODE_MT_compositor_input_scene(Menu):
-    bl_idname = "NODE_MT_compositor_input_scene"
+    bl_idname = __qualname__
     bl_label = "Scene"
 
     def draw(self, _context):
@@ -73,7 +73,7 @@ class NODE_MT_compositor_input_scene(Menu):
 
 
 class NODE_MT_compositor_output(Menu):
-    bl_idname = "NODE_MT_compositor_output"
+    bl_idname = __qualname__
     bl_label = "Output"
 
     def draw(self, context):
@@ -93,7 +93,7 @@ class NODE_MT_compositor_output(Menu):
 
 
 class NODE_MT_compositor_color(ColumnMenu, Menu):
-    bl_idname = "NODE_MT_compositor_color"
+    bl_idname = __qualname__
     bl_label = "Color"
 
     def draw(self, _context):
@@ -117,7 +117,7 @@ class NODE_MT_compositor_color(ColumnMenu, Menu):
 
 
 class NODE_MT_compositor_color_adjust(Menu):
-    bl_idname = "NODE_MT_compositor_color_adjust"
+    bl_idname = __qualname__
     bl_label = "Adjust"
 
     def draw(self, _context):
@@ -136,7 +136,7 @@ class NODE_MT_compositor_color_adjust(Menu):
 
 
 class NODE_MT_compositor_color_mix(Menu):
-    bl_idname = "NODE_MT_compositor_color_mix"
+    bl_idname = __qualname__
     bl_label = "Mix"
 
     def draw(self, _context):
@@ -151,7 +151,7 @@ class NODE_MT_compositor_color_mix(Menu):
 
 
 class NODE_MT_compositor_filter(ColumnMenu, Menu):
-    bl_idname = "NODE_MT_compositor_filter"
+    bl_idname = __qualname__
     bl_label = "Filter"
 
     def draw(self, _context):
@@ -165,7 +165,7 @@ class NODE_MT_compositor_filter(ColumnMenu, Menu):
 
 
 class NODE_MT_compositor_filter_blur(Menu):
-    bl_idname = "NODE_MT_compositor_filter_blur"
+    bl_idname = __qualname__
     bl_label = "Blur"
 
     def draw(self, _context):
@@ -182,7 +182,7 @@ class NODE_MT_compositor_filter_blur(Menu):
 
 
 class NODE_MT_compositor_filter_effect(Menu):
-    bl_idname = "NODE_MT_compositor_filter_effect"
+    bl_idname = __qualname__
     bl_label = "Effects"
 
     def draw(self, _context):
@@ -196,7 +196,7 @@ class NODE_MT_compositor_filter_effect(Menu):
 
 
 class NODE_MT_compositor_filter_utilities(Menu):
-    bl_idname = "NODE_MT_compositor_filter_utilities"
+    bl_idname = __qualname__
     bl_label = "Utilities"
 
     def draw(self, _context):
@@ -210,7 +210,7 @@ class NODE_MT_compositor_filter_utilities(Menu):
 
 
 class NODE_MT_compositor_group(Menu):
-    bl_idname = "NODE_MT_compositor_group"
+    bl_idname = __qualname__
     bl_label = "Group"
 
     def draw(self, context):
@@ -220,7 +220,7 @@ class NODE_MT_compositor_group(Menu):
 
 
 class NODE_MT_compositor_keying(Menu):
-    bl_idname = "NODE_MT_compositor_keying"
+    bl_idname = __qualname__
     bl_label = "Keying"
 
     def draw(self, _context):
@@ -239,7 +239,7 @@ class NODE_MT_compositor_keying(Menu):
 
 
 class NODE_MT_compositor_mask(Menu):
-    bl_idname = "NODE_MT_compositor_mask"
+    bl_idname = __qualname__
     bl_label = "Mask"
 
     def draw(self, _context):
@@ -257,7 +257,7 @@ class NODE_MT_compositor_mask(Menu):
 
 
 class NODE_MT_compositor_tracking(Menu):
-    bl_idname = "NODE_MT_compositor_tracking"
+    bl_idname = __qualname__
     bl_label = "Tracking"
     bl_translation_context = i18n_contexts.id_movieclip
 
@@ -271,7 +271,7 @@ class NODE_MT_compositor_tracking(Menu):
 
 
 class NODE_MT_compositor_transform(Menu):
-    bl_idname = "NODE_MT_compositor_transform"
+    bl_idname = __qualname__
     bl_label = "Transform"
 
     def draw(self, _context):
@@ -295,7 +295,7 @@ class NODE_MT_compositor_transform(Menu):
 
 
 class NODE_MT_compositor_utilities(Menu):
-    bl_idname = "NODE_MT_compositor_utilities"
+    bl_idname = __qualname__
     bl_label = "Utilities"
 
     def draw(self, _context):
@@ -317,7 +317,7 @@ class NODE_MT_compositor_utilities(Menu):
 
 
 class NODE_MT_compositor_vector(Menu):
-    bl_idname = "NODE_MT_compositor_vector"
+    bl_idname = __qualname__
     bl_label = "Vector"
 
     def draw(self, _context):
@@ -332,7 +332,7 @@ class NODE_MT_compositor_vector(Menu):
 
 
 class NODE_MT_compositor_node_add_all(Menu):
-    bl_idname = "NODE_MT_compositor_node_add_all"
+    bl_idname = __qualname__
     bl_label = ""
 
     def draw(self, context):
