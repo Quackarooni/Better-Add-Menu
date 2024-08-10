@@ -21,7 +21,7 @@ bl_info = {
     "description": "UI improvements and quality-of-life tweaks for the 'Add Node' menu for Node Editors",
     "version" : (1, 0, 0),
     "blender": (4, 0, 0),
-    "location": "Properties",
+    "location": "Node Editor",
     "category": "Interface",
 }
 
