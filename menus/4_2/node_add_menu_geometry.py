@@ -883,7 +883,7 @@ classes = (
     NODE_MT_geometry_node_attribute,
     NODE_MT_geometry_node_input,
     NODE_MT_geometry_node_input_constant,
-    NODE_MT_geometry_node_input_group,
+    #NODE_MT_geometry_node_input_group,
     NODE_MT_geometry_node_input_scene,
     NODE_MT_geometry_node_output,
     NODE_MT_geometry_node_geometry,
