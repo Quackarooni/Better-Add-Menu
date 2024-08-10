@@ -1,7 +1,6 @@
 import bpy
 import importlib
 
-from .utils import NODE_MT_add_node_assets
 
 version_tuple = tuple(map(str, bpy.app.version))
 version = "." + "_".join(version_tuple[:2])
@@ -13,5 +12,4 @@ except Exception:
 
 classes = (
     *version_module.classes,
-    NODE_MT_add_node_assets,
     )

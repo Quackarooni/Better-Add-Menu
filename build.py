@@ -7,7 +7,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 
-root = Path(__file__).parent
+root = Path(__file__).parent / "source"
 RELEASE_FOLDER = Path("release")
 
 exclude_filters = (
@@ -111,7 +111,6 @@ def generate_blender_manifest(output_folder, version):
     version_string = version_to_string(version)
 
     substitutions = (
-        (r'^(version *= *).*', rf'\1"{version_string}"'),
         (r'^(blender_version_min *= *).*', rf'\1"{version_string}"'),
     )
 

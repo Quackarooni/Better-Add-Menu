@@ -25,7 +25,19 @@ bl_info = {
     "category": "Interface",
 }
 
-from .source import register, unregister
+from . import operators, ui, keymaps, prefs 
+modules = (operators, ui, keymaps, prefs,)
+
+
+def register():
+    for module in modules:
+        module.register()
+
+
+def unregister():
+    for module in modules:
+        module.unregister()
+
 
 if __name__ == "__main__":
     register()
