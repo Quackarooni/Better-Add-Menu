@@ -17,8 +17,8 @@ from ..utils import (
     draw_node_group_add_menu
     )
 
-class NODE_MT_category_compositor_input(ColumnMenu, Menu):
-    bl_idname = "NODE_MT_category_compositor_input"
+class NODE_MT_compositor_input(ColumnMenu, Menu):
+    bl_idname = "NODE_MT_compositor_input"
     bl_label = "Input"
 
     def draw(self, context):
@@ -27,7 +27,7 @@ class NODE_MT_category_compositor_input(ColumnMenu, Menu):
 
         layout = self.layout.row()
 
-        self.draw_column(layout, menus=(NODE_MT_category_compositor_input_constant, ))
+        self.draw_column(layout, menus=(NODE_MT_compositor_input_constant, ))
         
         col = layout.column()
         col.label(text="Data")
@@ -42,13 +42,13 @@ class NODE_MT_category_compositor_input(ColumnMenu, Menu):
         #    add_separator(col)
         #    node_add_menu.add_node_type(layout, "NodeGroupInput")
         
-        self.draw_column(layout, menus=(NODE_MT_category_compositor_input_scene, ))
+        self.draw_column(layout, menus=(NODE_MT_compositor_input_scene, ))
 
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
-class NODE_MT_category_compositor_input_constant(Menu):
-    bl_idname = "NODE_MT_category_compositor_input_constant"
+class NODE_MT_compositor_input_constant(Menu):
+    bl_idname = "NODE_MT_compositor_input_constant"
     bl_label = "Constant"
 
     def draw(self, _context):
@@ -59,8 +59,8 @@ class NODE_MT_category_compositor_input_constant(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, "Input/Constant")
 
 
-class NODE_MT_category_compositor_input_scene(Menu):
-    bl_idname = "NODE_MT_category_compositor_input_scene"
+class NODE_MT_compositor_input_scene(Menu):
+    bl_idname = "NODE_MT_compositor_input_scene"
     bl_label = "Scene"
 
     def draw(self, _context):
@@ -72,8 +72,8 @@ class NODE_MT_category_compositor_input_scene(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, "Input/Scene")
 
 
-class NODE_MT_category_compositor_output(Menu):
-    bl_idname = "NODE_MT_category_compositor_output"
+class NODE_MT_compositor_output(Menu):
+    bl_idname = "NODE_MT_compositor_output"
     bl_label = "Output"
 
     def draw(self, context):
@@ -92,15 +92,15 @@ class NODE_MT_category_compositor_output(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
-class NODE_MT_category_compositor_color(ColumnMenu, Menu):
-    bl_idname = "NODE_MT_category_compositor_color"
+class NODE_MT_compositor_color(ColumnMenu, Menu):
+    bl_idname = "NODE_MT_compositor_color"
     bl_label = "Color"
 
     def draw(self, _context):
         layout = self.layout.row()
 
-        self.draw_column(layout, menus=(NODE_MT_category_compositor_color_adjust,))
-        self.draw_column(layout, menus=(NODE_MT_category_compositor_color_mix,))
+        self.draw_column(layout, menus=(NODE_MT_compositor_color_adjust,))
+        self.draw_column(layout, menus=(NODE_MT_compositor_color_mix,))
 
         col = layout.column()
         col.label(text="Miscellaneous")
@@ -116,8 +116,8 @@ class NODE_MT_category_compositor_color(ColumnMenu, Menu):
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
-class NODE_MT_category_compositor_color_adjust(Menu):
-    bl_idname = "NODE_MT_category_compositor_color_adjust"
+class NODE_MT_compositor_color_adjust(Menu):
+    bl_idname = "NODE_MT_compositor_color_adjust"
     bl_label = "Adjust"
 
     def draw(self, _context):
@@ -135,8 +135,8 @@ class NODE_MT_category_compositor_color_adjust(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, "Color/Adjust")
 
 
-class NODE_MT_category_compositor_color_mix(Menu):
-    bl_idname = "NODE_MT_category_compositor_color_mix"
+class NODE_MT_compositor_color_mix(Menu):
+    bl_idname = "NODE_MT_compositor_color_mix"
     bl_label = "Mix"
 
     def draw(self, _context):
@@ -150,22 +150,22 @@ class NODE_MT_category_compositor_color_mix(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, "Color/Mix")
 
 
-class NODE_MT_category_compositor_filter(ColumnMenu, Menu):
-    bl_idname = "NODE_MT_category_compositor_filter"
+class NODE_MT_compositor_filter(ColumnMenu, Menu):
+    bl_idname = "NODE_MT_compositor_filter"
     bl_label = "Filter"
 
     def draw(self, _context):
         layout = self.layout.row()
 
-        self.draw_column(layout, menus=(NODE_MT_category_compositor_filter_blur,))
-        self.draw_column(layout, menus=(NODE_MT_category_compositor_filter_effect,))
-        self.draw_column(layout, menus=(NODE_MT_category_compositor_filter_utilities,))
+        self.draw_column(layout, menus=(NODE_MT_compositor_filter_blur,))
+        self.draw_column(layout, menus=(NODE_MT_compositor_filter_effect,))
+        self.draw_column(layout, menus=(NODE_MT_compositor_filter_utilities,))
 
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
-class NODE_MT_category_compositor_filter_blur(Menu):
-    bl_idname = "NODE_MT_category_compositor_filter_blur"
+class NODE_MT_compositor_filter_blur(Menu):
+    bl_idname = "NODE_MT_compositor_filter_blur"
     bl_label = "Blur"
 
     def draw(self, _context):
@@ -181,8 +181,8 @@ class NODE_MT_category_compositor_filter_blur(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, "Filter/Blur")
 
 
-class NODE_MT_category_compositor_filter_effect(Menu):
-    bl_idname = "NODE_MT_category_compositor_filter_effect"
+class NODE_MT_compositor_filter_effect(Menu):
+    bl_idname = "NODE_MT_compositor_filter_effect"
     bl_label = "Effects"
 
     def draw(self, _context):
@@ -195,8 +195,8 @@ class NODE_MT_category_compositor_filter_effect(Menu):
         node_add_menu.add_node_type(layout, "CompositorNodeSunBeams")
 
 
-class NODE_MT_category_compositor_filter_utilities(Menu):
-    bl_idname = "NODE_MT_category_compositor_filter_utilities"
+class NODE_MT_compositor_filter_utilities(Menu):
+    bl_idname = "NODE_MT_compositor_filter_utilities"
     bl_label = "Utilities"
 
     def draw(self, _context):
@@ -209,8 +209,8 @@ class NODE_MT_category_compositor_filter_utilities(Menu):
         node_add_menu.add_node_type(layout, "CompositorNodeInpaint")
 
 
-class NODE_MT_category_compositor_group(Menu):
-    bl_idname = "NODE_MT_category_compositor_group"
+class NODE_MT_compositor_group(Menu):
+    bl_idname = "NODE_MT_compositor_group"
     bl_label = "Group"
 
     def draw(self, context):
@@ -219,8 +219,8 @@ class NODE_MT_category_compositor_group(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
-class NODE_MT_category_compositor_keying(Menu):
-    bl_idname = "NODE_MT_category_compositor_keying"
+class NODE_MT_compositor_keying(Menu):
+    bl_idname = "NODE_MT_compositor_keying"
     bl_label = "Keying"
 
     def draw(self, _context):
@@ -238,8 +238,8 @@ class NODE_MT_category_compositor_keying(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
-class NODE_MT_category_compositor_mask(Menu):
-    bl_idname = "NODE_MT_category_compositor_mask"
+class NODE_MT_compositor_mask(Menu):
+    bl_idname = "NODE_MT_compositor_mask"
     bl_label = "Mask"
 
     def draw(self, _context):
@@ -256,8 +256,8 @@ class NODE_MT_category_compositor_mask(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
-class NODE_MT_category_compositor_tracking(Menu):
-    bl_idname = "NODE_MT_category_compositor_tracking"
+class NODE_MT_compositor_tracking(Menu):
+    bl_idname = "NODE_MT_compositor_tracking"
     bl_label = "Tracking"
     bl_translation_context = i18n_contexts.id_movieclip
 
@@ -270,8 +270,8 @@ class NODE_MT_category_compositor_tracking(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
-class NODE_MT_category_compositor_transform(Menu):
-    bl_idname = "NODE_MT_category_compositor_transform"
+class NODE_MT_compositor_transform(Menu):
+    bl_idname = "NODE_MT_compositor_transform"
     bl_label = "Transform"
 
     def draw(self, _context):
@@ -294,8 +294,8 @@ class NODE_MT_category_compositor_transform(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
-class NODE_MT_category_compositor_utilities(Menu):
-    bl_idname = "NODE_MT_category_compositor_utilities"
+class NODE_MT_compositor_utilities(Menu):
+    bl_idname = "NODE_MT_compositor_utilities"
     bl_label = "Utilities"
 
     def draw(self, _context):
@@ -316,8 +316,8 @@ class NODE_MT_category_compositor_utilities(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
-class NODE_MT_category_compositor_vector(Menu):
-    bl_idname = "NODE_MT_category_compositor_vector"
+class NODE_MT_compositor_vector(Menu):
+    bl_idname = "NODE_MT_compositor_vector"
     bl_label = "Vector"
 
     def draw(self, _context):
@@ -331,8 +331,8 @@ class NODE_MT_category_compositor_vector(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
-class NODE_MT_category_compositor_LAYOUT(Menu):
-    bl_idname = "NODE_MT_category_compositor_LAYOUT"
+class NODE_MT_compositor_layout(Menu):
+    bl_idname = "NODE_MT_compositor_layout"
     bl_label = "Layout"
 
     def draw(self, _context):
@@ -349,22 +349,22 @@ class NODE_MT_compositor_node_add_all(Menu):
 
     def draw(self, context):
         layout = self.layout
-        layout.menu("NODE_MT_category_compositor_input")
-        layout.menu("NODE_MT_category_compositor_output")
+        layout.menu("NODE_MT_compositor_input")
+        layout.menu("NODE_MT_compositor_output")
         add_separator(layout)
-        layout.menu("NODE_MT_category_compositor_color")
-        layout.menu("NODE_MT_category_compositor_filter")
+        layout.menu("NODE_MT_compositor_color")
+        layout.menu("NODE_MT_compositor_filter")
         add_separator(layout)
-        layout.menu("NODE_MT_category_compositor_keying")
-        layout.menu("NODE_MT_category_compositor_mask")
+        layout.menu("NODE_MT_compositor_keying")
+        layout.menu("NODE_MT_compositor_mask")
         add_separator(layout)
-        layout.menu("NODE_MT_category_compositor_tracking")
+        layout.menu("NODE_MT_compositor_tracking")
         add_separator(layout)
-        layout.menu("NODE_MT_category_compositor_transform")
-        layout.menu("NODE_MT_category_compositor_utilities")
-        layout.menu("NODE_MT_category_compositor_vector")
+        layout.menu("NODE_MT_compositor_transform")
+        layout.menu("NODE_MT_compositor_utilities")
+        layout.menu("NODE_MT_compositor_vector")
         add_separator(layout)
-        layout.menu("NODE_MT_category_compositor_group")
+        layout.menu("NODE_MT_compositor_group")
         layout.menu("NODE_MT_category_layout")
 
         draw_asset_menu(layout)
@@ -372,24 +372,24 @@ class NODE_MT_compositor_node_add_all(Menu):
 
 classes = (
     NODE_MT_compositor_node_add_all,
-    NODE_MT_category_compositor_input,
-    NODE_MT_category_compositor_input_constant,
-    NODE_MT_category_compositor_input_scene,
-    NODE_MT_category_compositor_output,
-    NODE_MT_category_compositor_color,
-    NODE_MT_category_compositor_color_adjust,
-    NODE_MT_category_compositor_color_mix,
-    NODE_MT_category_compositor_filter,
-    NODE_MT_category_compositor_filter_blur,
-    NODE_MT_category_compositor_filter_effect,
-    NODE_MT_category_compositor_filter_utilities,
-    NODE_MT_category_compositor_keying,
-    NODE_MT_category_compositor_mask,
-    NODE_MT_category_compositor_tracking,
-    NODE_MT_category_compositor_transform,
-    NODE_MT_category_compositor_utilities,
-    NODE_MT_category_compositor_vector,
-    NODE_MT_category_compositor_group,
+    NODE_MT_compositor_input,
+    NODE_MT_compositor_input_constant,
+    NODE_MT_compositor_input_scene,
+    NODE_MT_compositor_output,
+    NODE_MT_compositor_color,
+    NODE_MT_compositor_color_adjust,
+    NODE_MT_compositor_color_mix,
+    NODE_MT_compositor_filter,
+    NODE_MT_compositor_filter_blur,
+    NODE_MT_compositor_filter_effect,
+    NODE_MT_compositor_filter_utilities,
+    NODE_MT_compositor_keying,
+    NODE_MT_compositor_mask,
+    NODE_MT_compositor_tracking,
+    NODE_MT_compositor_transform,
+    NODE_MT_compositor_utilities,
+    NODE_MT_compositor_vector,
+    NODE_MT_compositor_group,
 )
 
 if __name__ == "__main__":  # only for live edit.
