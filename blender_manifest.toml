@@ -1,0 +1,20 @@
+schema_version = "1.0.0"
+
+id = "better_add_menu"
+name = "Better Add Menu"
+version = "1.0.0"
+tagline = "UI improvements and quality-of-life tweaks for the 'Add Node' menu for Node Editors"
+maintainer = "Quackers"
+type = "add-on"
+tags = ["Node", "User Interface"]
+
+blender_version_min = "4.2.0"
+license = ["SPDX:GPL-3.0-or-later"]
+
+[build]
+paths_exclude_pattern = [
+    "/.git/",
+    "**/.gitignore",
+    "**/__pycache__/",
+    "/release/**",
+]
