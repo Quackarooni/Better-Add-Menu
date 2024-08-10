@@ -859,7 +859,7 @@ class NODE_MT_geometry_node_add_all(Menu):
         layout.menu("NODE_MT_geometry_node_utilities")
         add_separator(layout)
         layout.menu("NODE_MT_geometry_node_group")
-        layout.menu("NODE_MT_geometry_node_layout")
+        layout.menu("NODE_MT_category_layout")
         add_separator(layout)
         layout.menu("NODE_MT_geometry_node_deprecated", icon="INFO")
         
