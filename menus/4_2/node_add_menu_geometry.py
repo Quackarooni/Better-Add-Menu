@@ -33,7 +33,7 @@ class NODE_MT_geometry_node_attribute(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
-class NODE_MT_geometry_node_color(Menu):
+class NODE_MT_geometry_node_utilities_color(Menu):
     bl_idname = __qualname__
     bl_label = "Color"
 
@@ -154,7 +154,7 @@ class NODE_MT_geometry_node_primitives_curve(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, "Curve/Primitives")
 
 
-class NODE_MT_geometry_node_curve_topology(Menu):
+class NODE_MT_geometry_node_topology_curve(Menu):
     bl_idname = __qualname__
     bl_label = "Curve"
 
@@ -269,8 +269,8 @@ class NODE_MT_geometry_node_topology(ColumnMenu, Menu):
 
     def draw(self, _context):
         layout = self.layout.row()
-        self.draw_column(layout, menus=(NODE_MT_geometry_node_mesh_topology,))
-        self.draw_column(layout, menus=(NODE_MT_geometry_node_curve_topology,))
+        self.draw_column(layout, menus=(NODE_MT_geometry_node_topology_mesh,))
+        self.draw_column(layout, menus=(NODE_MT_geometry_node_topology_curve,))
 
 
 class NODE_MT_geometry_node_input(ColumnMenu, Menu):
@@ -400,7 +400,7 @@ class NODE_MT_geometry_node_mesh(ColumnMenu, Menu):
         self.draw_column(layout, menus=(
             NODE_MT_geometry_node_mesh_write, 
             NODE_MT_geometry_node_mesh_sample, 
-            NODE_MT_geometry_node_uv,
+            NODE_MT_geometry_node_mesh_uv,
             ))
 
         self.draw_column(layout, menus=(NODE_MT_geometry_node_mesh_operations,))
@@ -506,7 +506,7 @@ class NODE_MT_geometry_node_primitives_mesh(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, "Mesh/Primitives")
 
 
-class NODE_MT_geometry_node_mesh_topology(Menu):
+class NODE_MT_geometry_node_topology_mesh(Menu):
     bl_idname = __qualname__
     bl_label = "Mesh"
 
@@ -568,7 +568,7 @@ class NODE_MT_geometry_node_simulation(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
-class NODE_MT_geometry_node_text(Menu):
+class NODE_MT_geometry_node_utilities_text(Menu):
     bl_idname = __qualname__
     bl_label = "Text"
 
@@ -611,8 +611,8 @@ class NODE_MT_geometry_node_utilities(ColumnMenu, Menu):
     def draw(self, _context):
         layout = self.layout.row()
 
-        self.draw_column(layout, menus=(NODE_MT_geometry_node_color, NODE_MT_geometry_node_vector,))
-        self.draw_column(layout, menus=(NODE_MT_geometry_node_text, NODE_MT_geometry_node_utilities_field,))
+        self.draw_column(layout, menus=(NODE_MT_geometry_node_utilities_color, NODE_MT_geometry_node_utilities_vector,))
+        self.draw_column(layout, menus=(NODE_MT_geometry_node_utilities_text, NODE_MT_geometry_node_utilities_field,))
         col = self.draw_column(layout, menus=(NODE_MT_geometry_node_utilities_math,))
 
         add_separator(col)
@@ -639,7 +639,7 @@ class NODE_MT_geometry_node_utilities_field(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, "Utilities/Field")
 
 
-class NODE_MT_geometry_node_utilities_rotation(Menu):
+class NODE_MT_geometry_node_rotation(Menu):
     bl_idname = __qualname__
     bl_label = "Rotation"
 
@@ -664,7 +664,7 @@ class NODE_MT_geometry_node_utilities_rotation(Menu):
         node_add_menu.add_node_type(layout, "FunctionNodeRotationToQuaternion")
         #node_add_menu.draw_assets_for_catalog(layout, "Utilities/Rotation")
 
-class NODE_MT_geometry_node_utilities_matrix(Menu):
+class NODE_MT_geometry_node_matrix(Menu):
     bl_idname = __qualname__
     bl_label = "Matrix"
 
@@ -707,7 +707,7 @@ class NODE_MT_geometry_node_utilities_math(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, "Utilities/Math")
 
 
-class NODE_MT_geometry_node_uv(Menu):
+class NODE_MT_geometry_node_mesh_uv(Menu):
     bl_idname = __qualname__
     bl_label = "UV"
 
@@ -718,7 +718,7 @@ class NODE_MT_geometry_node_uv(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, "Mesh/UV")
 
 
-class NODE_MT_geometry_node_vector(Menu):
+class NODE_MT_geometry_node_utilities_vector(Menu):
     bl_idname = __qualname__
     bl_label = "Vector"
 
@@ -853,8 +853,8 @@ class NODE_MT_geometry_node_add_all(Menu):
         layout.menu("NODE_MT_geometry_node_simulation")
         add_separator(layout)
         layout.menu("NODE_MT_geometry_node_material")
-        layout.menu("NODE_MT_geometry_node_utilities_matrix")
-        layout.menu("NODE_MT_geometry_node_utilities_rotation")
+        layout.menu("NODE_MT_geometry_node_matrix")
+        layout.menu("NODE_MT_geometry_node_rotation")
         layout.menu("NODE_MT_geometry_node_texture")
         layout.menu("NODE_MT_geometry_node_utilities")
         add_separator(layout)
@@ -901,7 +901,7 @@ classes = (
     NODE_MT_geometry_node_mesh_read,
     NODE_MT_geometry_node_mesh_write,
     NODE_MT_geometry_node_mesh_sample,
-    NODE_MT_geometry_node_uv,
+    NODE_MT_geometry_node_mesh_uv,
     NODE_MT_geometry_node_mesh_operations,
     NODE_MT_geometry_node_point,
     NODE_MT_geometry_node_volume,
@@ -914,17 +914,17 @@ classes = (
     NODE_MT_geometry_node_primitives_mesh,
     NODE_MT_geometry_node_primitives_curve,
     NODE_MT_geometry_node_topology,
-    NODE_MT_geometry_node_mesh_topology,
-    NODE_MT_geometry_node_curve_topology,
+    NODE_MT_geometry_node_topology_mesh,
+    NODE_MT_geometry_node_topology_curve,
     NODE_MT_geometry_node_simulation,
     NODE_MT_geometry_node_material,
-    NODE_MT_geometry_node_utilities_matrix,
-    NODE_MT_geometry_node_utilities_rotation,
+    NODE_MT_geometry_node_matrix,
+    NODE_MT_geometry_node_rotation,
     NODE_MT_geometry_node_texture,
     NODE_MT_geometry_node_utilities,
-    NODE_MT_geometry_node_color,
-    NODE_MT_geometry_node_text,
-    NODE_MT_geometry_node_vector,
+    NODE_MT_geometry_node_utilities_color,
+    NODE_MT_geometry_node_utilities_text,
+    NODE_MT_geometry_node_utilities_vector,
     NODE_MT_geometry_node_utilities_field,
     NODE_MT_geometry_node_utilities_math,
     NODE_MT_geometry_node_group,
