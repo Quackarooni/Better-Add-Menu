@@ -40,14 +40,13 @@ class PackageConfig:
     version: tuple
     is_legacy: bool
 
-    __slots__ = ("version", "blender_version_string", "archive_name", "is_legacy", "internal_folder_name")
+    __slots__ = ("version", "archive_name", "is_legacy", "internal_folder_name")
 
     def __init__(self, version, base_name, addon_version, internal_folder_name, is_legacy=True):
         self.version = tuple(version)
         self.is_legacy = is_legacy
 
         version_string = version_to_string(version, depth=2)
-        self.blender_version_string = version_string
         self.archive_name = f"{base_name} {version_to_string(addon_version)} - Blender {version_string}"
 
         self.internal_folder_name = internal_folder_name
