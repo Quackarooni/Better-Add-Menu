@@ -15,14 +15,14 @@ class BetterAddMenuPreferences(bpy.types.AddonPreferences):
     show_assets_menu: BoolProperty(
         name="Show \"Assets\" Menu",
         default=True,
-        description="Toggles whether to display the \"Assets\" menu, which contains nodegroup assets from the user's asset library",
+        description="Toggle visibility of \"Assets\" menu, which contains nodegroup assets from the user's asset library",
     )
 
     if bpy.app.version >= (4, 1, 0):
         show_deprecated_menu: BoolProperty(
             name="Show \"Deprecated\" Menu",
             default=True,
-            description="Toggles whether to display the \"Deprecated\" menu, which contains nodes that are intended to be phased out of use",
+            description="Toggle visibility of \"Deprecated\" menu, which contains nodes that are intended to be phased out of use",
         )
 
         def draw_properties(self, layout):
@@ -34,7 +34,7 @@ class BetterAddMenuPreferences(bpy.types.AddonPreferences):
 
     def draw(self, context):
         layout = self.layout
-        
+
         col = layout.column(align=True)
         self.draw_properties(col)
 
