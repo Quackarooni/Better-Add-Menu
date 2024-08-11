@@ -1,5 +1,5 @@
 import bpy
-from bpy.props import BoolProperty, EnumProperty, StringProperty
+from bpy.props import BoolProperty
 from .keymaps import keymap_layout
 
 
