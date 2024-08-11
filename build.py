@@ -23,9 +23,12 @@ exclude_filters = (
 )
 
 ignored_files = (
-    "menus",
     "blender_manifest.toml",
     Path(__file__).name, # Exclude this build script
+)
+
+versioned_modules = (
+    "menus",
 )
 
 
@@ -43,12 +46,15 @@ class PackageConfig:
     __slots__ = ("version", "archive_name", "is_legacy", "internal_folder_name")
 
     def __init__(self, version, base_name, addon_version, internal_folder_name, is_legacy=True):
-        self.version = tuple(version)
+        if version == "ALL":
+            self.version = version
+            version_string = "Multi-version"
+        else:
+            self.version = tuple(version)
+            version_string = f"Blender {version_to_string(version, depth=2)}"
+
+        self.archive_name = f"{base_name} {version_to_string(addon_version)} - {version_string}"
         self.is_legacy = is_legacy
-
-        version_string = version_to_string(version, depth=2)
-        self.archive_name = f"{base_name} {version_to_string(addon_version)} - Blender {version_string}"
-
         self.internal_folder_name = internal_folder_name
     
     def __repr__(self):
@@ -196,14 +202,22 @@ def build_package(package_config):
     with TemporaryDirectory(dir=RELEASE_FOLDER) as temp_dir:
         dest_folder = Path(temp_dir, package_config.internal_folder_name)
         archive_name = package_config.archive_name
+        version = package_config.version
 
-        shutil.copytree(root, dest_folder, ignore=shutil.ignore_patterns(*exclude_filters, *ignored_files))
+        if version == "ALL":
+            ignore_patterns = shutil.ignore_patterns(*exclude_filters, *ignored_files)
+            shutil.copytree(root, dest_folder, ignore=ignore_patterns)
+        else:
+            ignore_patterns = shutil.ignore_patterns(*exclude_filters, *ignored_files, *versioned_modules)
+            shutil.copytree(root, dest_folder, ignore=ignore_patterns)
 
-        if not package_config.is_legacy:
-            generate_blender_manifest(output_folder=dest_folder, version=package_config.version)
+            for module in versioned_modules:
+                generate_versioned_module(root, dest_folder, name=module, version=version)
 
-        generate_init_py(output_folder=dest_folder, version=package_config.version)
-        generate_versioned_module(root, dest_folder, name="menus", version=package_config.version)
+            if not package_config.is_legacy:
+                generate_blender_manifest(output_folder=dest_folder, version=version)
+
+            generate_init_py(output_folder=dest_folder, version=version)
 
         folder_to_pack = temp_dir if package_config.is_legacy else dest_folder
         shutil.make_archive(RELEASE_FOLDER / archive_name, "zip", folder_to_pack)
