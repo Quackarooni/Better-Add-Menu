@@ -23,18 +23,17 @@ exclude_filters = (
 )
 
 ignored_files = (
-    "release",
-    "build_config.toml",
+    "menus",
     "blender_manifest.toml",
     Path(__file__).name, # Exclude this build script
 )
 
 
-def version_to_string(version, depth=None):
+def version_to_string(version, depth=None, separator="."):
     if depth is not None:
         version = version[:depth]
 
-    return '.'.join(map(str, version[:depth]))
+    return separator.join(map(str, version[:depth]))
 
 
 class PackageConfig:
@@ -152,6 +151,46 @@ def generate_init_py(output_folder, version):
         f.write(strings)
 
 
+def replace_strings_with_regex(target_path, substitutions):
+    with open(target_path, 'r', encoding="utf-8") as f:
+        strings = f.read()
+
+        for target, replace_with in substitutions:
+            # NOTE - This is intended to be a safeguard to avoid alterations where they aren't intended
+            matches = re.findall(target, strings, flags=re.MULTILINE)
+
+            assert len(matches) <= 1, (
+                f"Multiple matches found of regular expression, cannot substitute: '{target}'\n{re.findall(target, strings, flags=re.MULTILINE)}"
+            )
+
+            strings = re.sub(target, replace_with, strings, flags=re.MULTILINE)
+
+    with open(target_path, 'w', encoding="utf-8") as f:
+        f.write(strings)
+        
+
+def generate_versioned_module(root, target, name, version):
+    module_path = root/name
+    target_path = target/name
+
+    py_files_exclude = {
+        "__init__.py",
+        }
+
+    version_string = version_to_string(version, depth=2, separator="_")
+    shutil.copytree(module_path/version_string, target_path, ignore=shutil.ignore_patterns(*exclude_filters))
+
+    for py_file in module_path.glob("*.py"):
+        name = py_file.name
+        if name not in py_files_exclude:
+            shutil.copy(py_file, target_path)
+
+    for py_file in target_path.glob("*.py"):
+        replace_strings_with_regex(py_file, substitutions=(
+                (r'(^ *)from ..utils', r'\1from .utils'),
+            ))
+
+
 def build_package(package_config):
     with TemporaryDirectory(dir=RELEASE_FOLDER) as temp_dir:
         dest_folder = Path(temp_dir, package_config.internal_folder_name)
@@ -163,6 +202,7 @@ def build_package(package_config):
             generate_blender_manifest(output_folder=dest_folder, version=package_config.version)
 
         generate_init_py(output_folder=dest_folder, version=package_config.version)
+        generate_versioned_module(root, dest_folder, name="menus", version=package_config.version)
 
         folder_to_pack = temp_dir if package_config.is_legacy else dest_folder
         shutil.make_archive(RELEASE_FOLDER / archive_name, "zip", folder_to_pack)
