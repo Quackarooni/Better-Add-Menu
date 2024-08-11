@@ -219,6 +219,13 @@ def build_package(package_config):
 
             generate_init_py(output_folder=dest_folder, version=version)
 
+        replace_strings_with_regex(dest_folder/"prefs.py", substitutions=(
+            (r'^( *bl_idname *= *).*', r'\1__package__'),
+        ))
+        replace_strings_with_regex(dest_folder/"utils.py", substitutions=(
+            (r'preferences.addons\[\"Better Add Menu\"\].preferences', r'bpreferences.addons[__package__].preferences'),
+        ))
+
         folder_to_pack = temp_dir if package_config.is_legacy else dest_folder
         shutil.make_archive(RELEASE_FOLDER / archive_name, "zip", folder_to_pack)
 

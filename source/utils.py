@@ -3,7 +3,7 @@ from pathlib import Path
 
 
 def fetch_user_preferences(attr_id=None):
-    prefs = bpy.context.preferences.addons[__package__].preferences
+    prefs = bpy.context.preferences.addons["Better Add Menu"].preferences
 
     if attr_id is None:
         return prefs

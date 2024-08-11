@@ -4,7 +4,7 @@ from .keymaps import keymap_layout
 
 
 class BetterAddMenuPreferences(bpy.types.AddonPreferences):
-    bl_idname = __package__
+    bl_idname = "Better Add Menu"
 
     show_keymaps: BoolProperty(
         name="Show Keymaps",
