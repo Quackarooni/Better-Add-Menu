@@ -14,7 +14,7 @@ class InvokeMenuBaseClass:
 
 class INVOKE_OT_ADD_NODE_ASSET_MENU(InvokeMenuBaseClass, Operator):
     bl_idname = "node.invoke_add_node_asset_menu"
-    bl_label = "Add Asset Modifier"
+    bl_label = "Add Asset Nodegroup"
     menu_id = "NODE_MT_add_node_assets"
 
 

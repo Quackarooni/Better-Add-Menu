@@ -1,7 +1,7 @@
 schema_version = "1.0.0"
 
-id = "better_node_menu"
-name = "Better Node Menu"
+id = "better_add_menu"
+name = "Better Add Menu"
 version = "1.0.0"
 tagline = "UI improvements and quality-of-life tweaks for the 'Add Node' menu for Node Editors"
 maintainer = "Quackers"

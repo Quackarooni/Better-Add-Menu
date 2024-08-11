@@ -16,13 +16,13 @@
 #
 # ##### END GPL LICENSE BLOCK #####
 bl_info = {
-    "name": "Better Node Menu",
+    "name": "Better Add Menu",
     "author": "Quackers",
     "description": "UI improvements and quality-of-life tweaks for the 'Add Node' menu for Node Editors",
     "version" : (1, 0, 0),
     "blender": (4, 0, 0),
     "location": "Node Editor",
-    "category": "Interface",
+    "category": "Node",
 }
 
 from .source import register, unregister
