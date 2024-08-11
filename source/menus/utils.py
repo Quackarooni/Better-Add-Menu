@@ -1,12 +1,12 @@
 from bpy.types import Menu
 from bl_ui.node_add_menu import add_node_type
 
-from .. import utils
+from ..utils import fetch_user_preferences
 
 spacing = 0.65
 
 def draw_asset_menu(layout):
-    if utils.fetch_user_preferences("show_assets_menu"):
+    if fetch_user_preferences("show_assets_menu"):
         layout.separator()
         layout.menu("NODE_MT_add_node_assets", text="Assets", icon='ASSET_MANAGER')
 

@@ -14,7 +14,8 @@ from ..utils import (
     ColumnMenu, 
     add_separator, 
     draw_asset_menu, 
-    draw_node_group_add_menu
+    draw_node_group_add_menu,
+    fetch_user_preferences
     )
 
 class NODE_MT_geometry_node_attribute(Menu):
@@ -797,7 +798,10 @@ class NODE_MT_geometry_node_add_all(Menu):
         layout.menu("NODE_MT_geometry_node_group")
         layout.menu("NODE_MT_category_layout")
         add_separator(layout)
-        layout.menu("NODE_MT_geometry_node_deprecated", icon="INFO")
+
+        if fetch_user_preferences("show_deprecated_menu"):
+            layout.menu("NODE_MT_geometry_node_deprecated", icon="INFO")
+            add_separator(layout)
         
         draw_asset_menu(layout)
 

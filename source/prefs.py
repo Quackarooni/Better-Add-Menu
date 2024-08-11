@@ -18,9 +18,25 @@ class BetterAddMenuPreferences(bpy.types.AddonPreferences):
         description="Toggles whether to display the \"Assets\" menu, which contains nodegroup assets from the user's asset library",
     )
 
+    if bpy.app.version >= (4, 1, 0):
+        show_deprecated_menu: BoolProperty(
+            name="Show \"Deprecated\" Menu",
+            default=True,
+            description="Toggles whether to display the \"Deprecated\" menu, which contains nodes that are intended to be phased out of use",
+        )
+
+        def draw_properties(self, layout):
+            layout.prop(self, "show_assets_menu")
+            layout.prop(self, "show_deprecated_menu")
+    else:
+        def draw_properties(self, layout):
+            layout.prop(self, "show_assets_menu")
+
     def draw(self, context):
         layout = self.layout
-        layout.prop(self, "show_assets_menu")
+        
+        col = layout.column(align=True)
+        self.draw_properties(col)
 
         keymap_layout.draw_keyboard_shorcuts(self, layout, context)
 
