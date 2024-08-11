@@ -42,13 +42,13 @@ class PackageConfig:
 
     __slots__ = ("version", "blender_version_string", "archive_name", "is_legacy", "internal_folder_name")
 
-    def __init__(self, version, base_name, internal_folder_name, is_legacy=True):
+    def __init__(self, version, base_name, addon_version, internal_folder_name, is_legacy=True):
         self.version = tuple(version)
         self.is_legacy = is_legacy
 
         version_string = version_to_string(version, depth=2)
         self.blender_version_string = version_string
-        self.archive_name = f"{base_name} {version_string}"
+        self.archive_name = f"{base_name} {version_to_string(addon_version)} - Blender {version_string}"
 
         self.internal_folder_name = internal_folder_name
     
@@ -69,10 +69,12 @@ class BuildConfig:
     def __init__(self, data):
         base_name = str(data["base_name"])
         internal_folder_name = str(data["internal_folder_name"])
+        addon_version = data["addon_version"]
 
         shared_data = {
             "base_name" : base_name,
             "internal_folder_name" : internal_folder_name,
+            "addon_version" : addon_version
         }
 
         self.base_name = base_name
