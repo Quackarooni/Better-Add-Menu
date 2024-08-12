@@ -12,7 +12,7 @@ built_in_menus = (
 
 def register():
     for cls in built_in_menus:
-        if hasattr(bpy.types, cls.__name__):
+        if hasattr(bpy.types, cls.bl_idname):
             bpy.utils.unregister_class(cls)
 
     for cls in menus.classes:
@@ -21,7 +21,7 @@ def register():
 
 def unregister():
     for cls in menus.classes:
-        if hasattr(bpy.types, cls.__name__):
+        if hasattr(bpy.types, cls.bl_idname):
             bpy.utils.unregister_class(cls)
 
     for cls in built_in_menus:

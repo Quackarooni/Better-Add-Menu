@@ -63,6 +63,7 @@ class ColumnMenu:
         return col
 
 class NODE_MT_add_node_assets(Menu):
+    bl_idname = __qualname__
     bl_label = "Add Asset"
     bl_space_type = 'NODE_EDITOR'
     bl_options = {'SEARCH_ON_KEY_PRESS'}
