@@ -193,9 +193,10 @@ def generate_versioned_module(root, target, name, version):
             shutil.copy(py_file, target_path)
 
     for py_file in target_path.glob("*.py"):
-        replace_strings_with_regex(py_file, substitutions=(
-                (r'(^ *)from ..utils', r'\1from .utils'),
-            ))
+        if py_file.name != "utils.py": 
+            replace_strings_with_regex(py_file, substitutions=(
+                 (r'(^ *)from ..utils', r'\1from .utils'),
+             ))
 
 
 def build_package(package_config):
@@ -223,7 +224,7 @@ def build_package(package_config):
             (r'^( *bl_idname *= *).*', r'\1__package__'),
         ))
         replace_strings_with_regex(dest_folder/"utils.py", substitutions=(
-            (r'preferences.addons\[\"Better Add Menu\"\].preferences', r'bpreferences.addons[__package__].preferences'),
+            (r'preferences.addons\[\"Better Add Menu\"\].preferences', r'preferences.addons[__package__].preferences'),
         ))
 
         folder_to_pack = temp_dir if package_config.is_legacy else dest_folder
