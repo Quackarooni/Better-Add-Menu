@@ -1,0 +1,22 @@
+base_name = "Better Add Menu"
+internal_folder_name = "Better Add Menu"
+addon_version = [1, 0, 0]
+
+
+[[builds]]
+version = "ALL"
+is_legacy = true
+
+[[builds]]
+version = [4, 0, 0]
+is_legacy = true
+
+[[builds]]
+version = [4, 1, 0]
+is_legacy = true
+
+[[builds]]
+version = [4, 2, 0]
+is_legacy = true
+
+
