@@ -18,7 +18,7 @@ This helps reduce [*"snaking"*](https://x.com/quackarooners/status/1823388484591
 
 #### - More Easily Accessible Categories
 
-![accessible_categories.webp](docs\accessible_categories.webp)
+![accessible_categories.webp](docs/accessible_categories.webp)
 
 Categories such as "Matrix", "Rotation", and "Deprecated" are pulled out of the "Utilities" submenu and are transferred to the top-level for easier access.
 
@@ -30,7 +30,7 @@ Other menus such as "Rotation" in Geometry Nodes, or "Blur" in the Compositor, a
 
 #### - Asset Menu
 
-![asset_menu.webp](docs\asset_menu.webp)
+![asset_menu.webp](docs/asset_menu.webp)
 
 Catalogs for nodegroup assets are now placed on a dedicated "Assets" menu. This helps reduce vertical clutter caused by large asset libraries. 
 
@@ -40,7 +40,7 @@ Additionally, it can be called separately via a hotkey that's user-configurable.
 
 ## Preferences
 
-![user_preferences.webp](docs\user_preferences.webp)
+![user_preferences.webp](docs/user_preferences.webp)
 
 - `Show Assets Menu` - Toggles visibility of the *"Assets"* menu, which contains nodegroup assets from the user's asset library.
 
@@ -74,7 +74,7 @@ After you do this once, the loading order should stay consistent across sessions
 
 The search results for the built-in Add Menu show the whole chain of categories a node is parented to. 
 
-![different_search_results.webp](docs\different_search_results.webp)
+![different_search_results.webp](docs/different_search_results.webp)
 
 Since this addon flattened all the nested menus, this makes it so the search results are different as they only list the main category they belong to, and not any of the subcategories. 
 
