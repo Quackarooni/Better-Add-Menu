@@ -10,7 +10,7 @@ UI improvements and quality-of-life tweaks for the 'Add Node' menu in Blender's 
 
 #### - No More Nested Submenus
 
-**\<Insert IMAGE Here\>**
+![*flattened_submenus.webp](docs/flattened_submenus.webp)
 
 To minimize the amount of time it takes to get to the nodes you want, nested submenus are flattened into a single menu with the different categories appearing as different columns.
 
@@ -18,19 +18,19 @@ This helps reduce [*"snaking"*](https://x.com/quackarooners/status/1823388484591
 
 #### - More Easily Accessible Categories
 
-**\<Insert IMAGE Here\>**
+![accessible_categories.webp](docs\accessible_categories.webp)
 
 Categories such as "Matrix", "Rotation", and "Deprecated" are pulled out of the "Utilities" submenu and are transferred to the top-level for easier access.
 
 #### - Separators & Groupings
 
-**\<Insert IMAGE Here\>**
+<img title="" src="docs\separators_and_groupings.webp" alt="accessible_categories.webp" data-align="center" width="701">
 
 Other menus such as "Rotation" in Geometry Nodes, or "Blur" in the Compositor, among others, have extra separators added, allowing for grouping similar nodes with each other, while still maintaining alphabetical order.
 
 #### - Asset Menu
 
-**\<Insert IMAGE Here\>**
+![asset_menu.webp](docs\asset_menu.webp)
 
 Catalogs for nodegroup assets are now placed on a dedicated "Assets" menu. This helps reduce vertical clutter caused by large asset libraries. 
 
@@ -40,7 +40,7 @@ Additionally, it can be called separately via a hotkey that's user-configurable.
 
 ## Preferences
 
-**\<Insert IMAGE Here\>**
+![user_preferences.webp](docs\user_preferences.webp)
 
 - `Show Assets Menu` - Toggles visibility of the *"Assets"* menu, which contains nodegroup assets from the user's asset library.
 
@@ -56,11 +56,15 @@ Additionally, it can be called separately via a hotkey that's user-configurable.
 
 #### - Compatibility with Other Addons
 
+<img src="docs/node_wrangler_bug_broken.webp" title="" alt="node_wrangler_bug_broken.webp" width="914">
+
 Certain addons, such as Node Wrangler, may attach elements to Blender's built-in Add Menu. Since this addon replaces the Add Menu, those elements might not transfer over correctly if they were attached before this addon was loaded. 
 
 As far as I am aware, the Blender API currently doesn't provide any tools for addon developers to address this issue. 
 
-**\<Insert IMAGE Here\>**
+<img src="docs/how_to_fix_draw_order_bug.webp" title="" alt="how_to_fix_draw_order_bug.webp" width="962">
+
+<img src="docs/node_wrangler_bug_fixed.webp" title="" alt="node_wrangler_bug_fixed.webp" width="1396">
 
 The only way I can suggest to remedy this is to disable, and then re-enable any addons whose UI elements are not appearing in the Add Menu. This places them last in the addon loading order, so Better Add Menu's code gets loaded first and their UI elements should now get attached correctly.
 
@@ -70,7 +74,7 @@ After you do this once, the loading order should stay consistent across sessions
 
 The search results for the built-in Add Menu show the whole chain of categories a node is parented to. 
 
-**\<Insert IMAGE Here\>**
+![different_search_results.webp](docs\different_search_results.webp)
 
 Since this addon flattened all the nested menus, this makes it so the search results are different as they only list the main category they belong to, and not any of the subcategories. 
 
