@@ -6,8 +6,12 @@ from ..utils import fetch_user_preferences
 spacing = 0.65
 
 def draw_asset_menu(layout):
-    if fetch_user_preferences("show_assets_menu"):
-        layout.separator()
+    mode = fetch_user_preferences("show_asset_nodegroups") 
+    layout.separator()
+
+    if mode == "TOP_LEVEL":
+        layout.menu_contents("NODE_MT_add_node_assets")
+    elif mode == "SUBMENU":
         layout.menu("NODE_MT_add_node_assets", text="Assets", icon='ASSET_MANAGER')
 
 def add_separator(layout):
