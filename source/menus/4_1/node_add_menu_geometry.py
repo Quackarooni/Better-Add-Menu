@@ -37,6 +37,8 @@ class NODE_MT_geometry_node_utilities_color(Menu):
     bl_idname = "NODE_MT_geometry_node_GEO_COLOR"
     bl_label = "Color"
 
+    header_icon = "COLOR"
+
     def draw(self, _context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "ShaderNodeBlackbody")
@@ -70,6 +72,8 @@ class NODE_MT_geometry_node_curve_read(Menu):
     bl_idname = "NODE_MT_geometry_node_GEO_CURVE_READ"
     bl_label = "Read"
 
+    header_icon = "COPYDOWN"
+
     def draw(self, _context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "GeometryNodeInputCurveHandlePositions")
@@ -91,6 +95,8 @@ class NODE_MT_geometry_node_curve_sample(Menu):
     bl_idname = "NODE_MT_geometry_node_GEO_CURVE_SAMPLE"
     bl_label = "Sample"
 
+    header_icon = "DRIVER"
+
     def draw(self, _context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "GeometryNodeSampleCurve")
@@ -100,6 +106,8 @@ class NODE_MT_geometry_node_curve_sample(Menu):
 class NODE_MT_geometry_node_curve_write(Menu):
     bl_idname = "NODE_MT_geometry_node_GEO_CURVE_WRITE"
     bl_label = "Write"
+
+    header_icon = "CURRENT_FILE"
 
     def draw(self, _context):
         layout = self.layout
@@ -119,6 +127,8 @@ class NODE_MT_geometry_node_curve_write(Menu):
 class NODE_MT_geometry_node_curve_operations(Menu):
     bl_idname = "NODE_MT_geometry_node_GEO_CURVE_OPERATIONS"
     bl_label = "Operations"
+
+    header_icon = "MODIFIER"
 
     def draw(self, _context):
         layout = self.layout
@@ -141,6 +151,8 @@ class NODE_MT_geometry_node_primitives_curve(Menu):
     bl_idname = "NODE_MT_geometry_node_GEO_PRIMITIVES_CURVE"
     bl_label = "Curve"
 
+    header_icon = "CURVE_DATA"
+
     def draw(self, _context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "GeometryNodeCurveArc")
@@ -157,6 +169,8 @@ class NODE_MT_geometry_node_primitives_curve(Menu):
 class NODE_MT_geometry_node_topology_curve(Menu):
     bl_idname = "NODE_MT_geometry_node_curve_topology"
     bl_label = "Curve"
+
+    header_icon = "CURVE_DATA"
 
     def draw(self, _context):
         layout = self.layout
@@ -184,6 +198,8 @@ class NODE_MT_geometry_node_geometry_read(Menu):
     bl_idname = "NODE_MT_geometry_node_GEO_GEOMETRY_READ"
     bl_label = "Read"
 
+    header_icon = "COPYDOWN"
+
     def draw(self, context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "GeometryNodeInputID")
@@ -203,6 +219,8 @@ class NODE_MT_geometry_node_geometry_write(Menu):
     bl_idname = "NODE_MT_geometry_node_GEO_GEOMETRY_WRITE"
     bl_label = "Write"
 
+    header_icon = "CURRENT_FILE"
+
     def draw(self, context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "GeometryNodeSetID")
@@ -215,6 +233,8 @@ class NODE_MT_geometry_node_geometry_write(Menu):
 class NODE_MT_geometry_node_geometry_operations(Menu):
     bl_idname = "NODE_MT_geometry_node_GEO_GEOMETRY_OPERATIONS"
     bl_label = "Operations"
+
+    header_icon = "MODIFIER"
 
     def draw(self, _context):
         layout = self.layout
@@ -240,6 +260,8 @@ class NODE_MT_geometry_node_geometry_operations(Menu):
 class NODE_MT_geometry_node_geometry_sample(Menu):
     bl_idname = "NODE_MT_geometry_node_GEO_GEOMETRY_SAMPLE"
     bl_label = "Sample"
+
+    header_icon = "DRIVER"
 
     def draw(self, _context):
         layout = self.layout
@@ -290,6 +312,8 @@ class NODE_MT_geometry_node_input_constant(Menu):
     bl_label = "Constant"
     bl_translation_context = i18n_contexts.id_nodetree
 
+    header_icon = "CON_TRANSFORM"
+
     def draw(self, _context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "FunctionNodeInputBool")
@@ -314,6 +338,8 @@ class NODE_MT_geometry_node_input_group(Menu):
     bl_idname = "NODE_MT_category_GEO_GROUP"
     bl_label = "Group"
 
+    header_icon = "NODETREE"
+
     def draw(self, _context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "NodeGroupInput")
@@ -323,6 +349,8 @@ class NODE_MT_geometry_node_input_group(Menu):
 class NODE_MT_geometry_node_input_scene(ColumnMenu, Menu):
     bl_idname = "NODE_MT_geometry_node_GEO_INPUT_SCENE"
     bl_label = "Scene"
+
+    header_icon = "SCENE_DATA"
 
     def draw(self, context):
         layout = self.layout
@@ -400,6 +428,8 @@ class NODE_MT_geometry_node_mesh_read(Menu):
     bl_idname = "NODE_MT_geometry_node_GEO_MESH_READ"
     bl_label = "Read"
 
+    header_icon = "COPYDOWN"
+
     def draw(self, context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "GeometryNodeInputMeshVertexNeighbors")
@@ -428,6 +458,8 @@ class NODE_MT_geometry_node_mesh_sample(Menu):
     bl_idname = "NODE_MT_geometry_node_GEO_MESH_SAMPLE"
     bl_label = "Sample"
 
+    header_icon = "DRIVER"
+
     def draw(self, _context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "GeometryNodeSampleNearestSurface")
@@ -438,6 +470,8 @@ class NODE_MT_geometry_node_mesh_sample(Menu):
 class NODE_MT_geometry_node_mesh_write(Menu):
     bl_idname = "NODE_MT_geometry_node_GEO_MESH_WRITE"
     bl_label = "Write"
+
+    header_icon = "CURRENT_FILE"
 
     def draw(self, context):
         layout = self.layout
@@ -450,6 +484,8 @@ class NODE_MT_geometry_node_mesh_write(Menu):
 class NODE_MT_geometry_node_mesh_operations(Menu):
     bl_idname = "NODE_MT_geometry_node_GEO_MESH_OPERATIONS"
     bl_label = "Operations"
+
+    header_icon = "MODIFIER"
 
     def draw(self, context):
         layout = self.layout
@@ -476,6 +512,8 @@ class NODE_MT_geometry_node_primitives_mesh(Menu):
     bl_idname = "NODE_MT_category_PRIMITIVES_MESH"
     bl_label = "Mesh"
 
+    header_icon = "MESH_DATA"
+
     def draw(self, _context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "GeometryNodeMeshCone")
@@ -492,6 +530,8 @@ class NODE_MT_geometry_node_primitives_mesh(Menu):
 class NODE_MT_geometry_node_topology_mesh(Menu):
     bl_idname = "NODE_MT_geometry_node_mesh_topology"
     bl_label = "Mesh"
+
+    header_icon = "MESH_DATA"
 
     def draw(self, _context):
         layout = self.layout
@@ -551,6 +591,8 @@ class NODE_MT_geometry_node_utilities_text(Menu):
     bl_idname = "NODE_MT_category_GEO_TEXT"
     bl_label = "Text"
 
+    header_icon = "OUTLINER_OB_FONT"
+
     def draw(self, _context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "GeometryNodeStringJoin")
@@ -595,7 +637,7 @@ class NODE_MT_geometry_node_utilities(ColumnMenu, Menu):
         col = self.draw_column(layout, menus=(NODE_MT_geometry_node_utilities_math,))
 
         add_separator(col)
-        col.label(text="Miscellaneous")
+        col.label(text="Miscellaneous", icon="COLLAPSEMENU")
         add_separator(col)
         node_add_menu.add_node_type(col, "GeometryNodeIndexSwitch")
         node_add_menu.add_node_type(col, "GeometryNodeMenuSwitch")
@@ -609,6 +651,8 @@ class NODE_MT_geometry_node_utilities(ColumnMenu, Menu):
 class NODE_MT_geometry_node_utilities_field(Menu):
     bl_idname = "NODE_MT_category_GEO_UTILITIES_FIELD"
     bl_label = "Field"
+
+    header_icon = "LIGHTPROBE_PLANE"
 
     def draw(self, _context):
         layout = self.layout
@@ -647,6 +691,8 @@ class NODE_MT_geometry_node_utilities_math(Menu):
     bl_idname = "NODE_MT_category_GEO_UTILITIES_MATH"
     bl_label = "Math"
 
+    header_icon = "CON_TRANSFORM_CACHE"
+
     def draw(self, _context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "FunctionNodeBooleanMath")
@@ -664,6 +710,8 @@ class NODE_MT_geometry_node_mesh_uv(Menu):
     bl_idname = "NODE_MT_category_GEO_UV"
     bl_label = "UV"
 
+    header_icon = "UV"
+
     def draw(self, _context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "GeometryNodeUVPackIslands")
@@ -674,6 +722,8 @@ class NODE_MT_geometry_node_mesh_uv(Menu):
 class NODE_MT_geometry_node_utilities_vector(Menu):
     bl_idname = "NODE_MT_category_GEO_VECTOR"
     bl_label = "Vector"
+
+    header_icon = "ORIENTATION_GLOBAL"
 
     def draw(self, _context):
         layout = self.layout
@@ -720,6 +770,8 @@ class NODE_MT_geometry_node_volume_read(Menu):
     bl_idname = "NODE_MT_geometry_node_GEO_VOLUME_READ"
     bl_label = "Read"
 
+    header_icon = "COPYDOWN"
+
     def draw(self, context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "GeometryNodeGetNamedGrid")
@@ -729,6 +781,8 @@ class NODE_MT_geometry_node_volume_read(Menu):
 class NODE_MT_geometry_node_volume_write(Menu):
     bl_idname = "NODE_MT_geometry_node_GEO_VOLUME_WRITE"
     bl_label = "Write"
+
+    header_icon = "CURRENT_FILE"
 
     def draw(self, context):
         layout = self.layout
@@ -740,6 +794,8 @@ class NODE_MT_geometry_node_volume_operations(Menu):
     bl_idname = "NODE_MT_geometry_node_GEO_VOLUME_OPERATIONS"
     bl_label = "Operations"
 
+    header_icon = "MODIFIER"
+
     def draw(self, context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "GeometryNodeVolumeToMesh")
@@ -749,6 +805,8 @@ class NODE_MT_geometry_node_volume_operations(Menu):
 class NODE_MT_geometry_node_volume_primitives(Menu):
     bl_idname = "NODE_MT_geometry_node_GEO_VOLUME_PRIMITIVES"
     bl_label = "Primitives"
+
+    header_icon = "OUTLINER_DATA_VOLUME"
 
     def draw(self, context):
         layout = self.layout

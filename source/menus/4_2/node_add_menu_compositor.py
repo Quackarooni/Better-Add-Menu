@@ -29,7 +29,7 @@ class NODE_MT_compositor_input(ColumnMenu, Menu):
         self.draw_column(layout, menus=(NODE_MT_compositor_input_constant, ))
         
         col = layout.column()
-        col.label(text="Data")
+        col.label(text="Data", icon="PRESET")
         add_separator(col)
         node_add_menu.add_node_type(col, "CompositorNodeBokehImage")
         node_add_menu.add_node_type(col, "CompositorNodeImage")
@@ -50,6 +50,8 @@ class NODE_MT_compositor_input_constant(Menu):
     bl_idname = "NODE_MT_category_compositor_input_constant"
     bl_label = "Constant"
 
+    header_icon = "CON_TRANSFORM"
+
     def draw(self, _context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "CompositorNodeRGB")
@@ -61,6 +63,8 @@ class NODE_MT_compositor_input_constant(Menu):
 class NODE_MT_compositor_input_scene(Menu):
     bl_idname = "NODE_MT_category_compositor_input_scene"
     bl_label = "Scene"
+
+    header_icon = "SCENE_DATA"
 
     def draw(self, _context):
         layout = self.layout
@@ -102,7 +106,7 @@ class NODE_MT_compositor_color(ColumnMenu, Menu):
         self.draw_column(layout, menus=(NODE_MT_compositor_color_mix,))
 
         col = layout.column()
-        col.label(text="Miscellaneous")
+        col.label(text="Miscellaneous", icon="COLLAPSEMENU")
         add_separator(col)
         node_add_menu.add_node_type(col, "CompositorNodePremulKey")
         node_add_menu.add_node_type(col, "CompositorNodeValToRGB")
@@ -118,6 +122,8 @@ class NODE_MT_compositor_color(ColumnMenu, Menu):
 class NODE_MT_compositor_color_adjust(Menu):
     bl_idname = "NODE_MT_category_compositor_color_adjust"
     bl_label = "Adjust"
+
+    header_icon = "MOD_HUE_SATURATION"
 
     def draw(self, _context):
         layout = self.layout
@@ -137,6 +143,8 @@ class NODE_MT_compositor_color_adjust(Menu):
 class NODE_MT_compositor_color_mix(Menu):
     bl_idname = "NODE_MT_category_compositor_color_mix"
     bl_label = "Mix"
+
+    header_icon = "OVERLAY"
 
     def draw(self, _context):
         layout = self.layout
@@ -167,6 +175,8 @@ class NODE_MT_compositor_filter_blur(Menu):
     bl_idname = "NODE_MT_category_compositor_filter_blur"
     bl_label = "Blur"
 
+    header_icon = "MOD_FLUIDSIM"
+
     def draw(self, _context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "CompositorNodeBlur")
@@ -184,6 +194,8 @@ class NODE_MT_compositor_filter_effect(Menu):
     bl_idname = "NODE_MT_category_compositor_filter_effect"
     bl_label = "Effects"
 
+    header_icon = "IMAGE_RGB_ALPHA"
+
     def draw(self, _context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "CompositorNodeFilter")
@@ -197,6 +209,8 @@ class NODE_MT_compositor_filter_effect(Menu):
 class NODE_MT_compositor_filter_utilities(Menu):
     bl_idname = "NODE_MT_category_compositor_filter_utilities"
     bl_label = "Utilities"
+
+    header_icon = "MODIFIER_DATA"
 
     def draw(self, _context):
         layout = self.layout
