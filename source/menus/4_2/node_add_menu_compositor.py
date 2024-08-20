@@ -27,21 +27,13 @@ class NODE_MT_compositor_input(ColumnMenu, Menu):
         layout = self.layout.row()
 
         self.draw_column(layout, menus=(NODE_MT_compositor_input_constant, ))
+        self.draw_column(layout, menus=(NODE_MT_compositor_input_data, ))
+        self.draw_column(layout, menus=(NODE_MT_compositor_input_scene, ))
         
-        col = layout.column()
-        col.label(text="Data", icon="PRESET")
-        add_separator(col)
-        node_add_menu.add_node_type(col, "CompositorNodeBokehImage")
-        node_add_menu.add_node_type(col, "CompositorNodeImage")
-        node_add_menu.add_node_type(col, "CompositorNodeMask")
-        node_add_menu.add_node_type(col, "CompositorNodeMovieClip")
-        node_add_menu.add_node_type(col, "CompositorNodeTexture")
-
         #if is_group:
         #    add_separator(col)
         #    node_add_menu.add_node_type(layout, "NodeGroupInput")
         
-        self.draw_column(layout, menus=(NODE_MT_compositor_input_scene, ))
 
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
@@ -58,6 +50,24 @@ class NODE_MT_compositor_input_constant(Menu):
         node_add_menu.add_node_type(layout, "CompositorNodeValue")
 
         #node_add_menu.draw_assets_for_catalog(layout, "Input/Constant")
+
+
+class NODE_MT_compositor_input_data(Menu):
+    bl_idname = "NODE_MT_compositor_input_data"
+    bl_label = "Data"
+        
+    header_icon = "PRESET"
+
+    def draw(self, _context):
+        layout = self.layout
+        
+        node_add_menu.add_node_type(layout, "CompositorNodeBokehImage")
+        node_add_menu.add_node_type(layout, "CompositorNodeImage")
+        node_add_menu.add_node_type(layout, "CompositorNodeMask")
+        node_add_menu.add_node_type(layout, "CompositorNodeMovieClip")
+        node_add_menu.add_node_type(layout, "CompositorNodeTexture")
+
+        #node_add_menu.draw_assets_for_catalog(layout, "Input/Data")
 
 
 class NODE_MT_compositor_input_scene(Menu):
@@ -104,17 +114,7 @@ class NODE_MT_compositor_color(ColumnMenu, Menu):
 
         self.draw_column(layout, menus=(NODE_MT_compositor_color_adjust,))
         self.draw_column(layout, menus=(NODE_MT_compositor_color_mix,))
-
-        col = layout.column()
-        col.label(text="Miscellaneous", icon="COLLAPSEMENU")
-        add_separator(col)
-        node_add_menu.add_node_type(col, "CompositorNodePremulKey")
-        node_add_menu.add_node_type(col, "CompositorNodeValToRGB")
-        node_add_menu.add_node_type(col, "CompositorNodeConvertColorSpace")
-        node_add_menu.add_node_type(col, "CompositorNodeSetAlpha")
-        add_separator(col)
-        node_add_menu.add_node_type(col, "CompositorNodeInvert")
-        node_add_menu.add_node_type(col, "CompositorNodeRGBToBW")
+        self.draw_column(layout, menus=(NODE_MT_compositor_color_misc,))
 
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
@@ -155,6 +155,27 @@ class NODE_MT_compositor_color_mix(Menu):
         node_add_menu.add_node_type(layout, "CompositorNodeAlphaOver")
         node_add_menu.add_node_type(layout, "CompositorNodeZcombine")
         #node_add_menu.draw_assets_for_catalog(layout, "Color/Mix")
+
+
+class NODE_MT_compositor_color_misc(Menu):
+    bl_idname = "NODE_MT_compositor_color_misc"
+    bl_label = "Miscellaneous"
+
+    header_icon = "COLLAPSEMENU"
+
+    def draw(self, _context):
+        layout = self.layout
+
+        add_separator(layout)
+        node_add_menu.add_node_type(layout, "CompositorNodePremulKey")
+        node_add_menu.add_node_type(layout, "CompositorNodeValToRGB")
+        node_add_menu.add_node_type(layout, "CompositorNodeConvertColorSpace")
+        node_add_menu.add_node_type(layout, "CompositorNodeSetAlpha")
+        add_separator(layout)
+        node_add_menu.add_node_type(layout, "CompositorNodeInvert")
+        node_add_menu.add_node_type(layout, "CompositorNodeRGBToBW")
+
+        #node_add_menu.draw_assets_for_catalog(layout, "Color/Miscellaneous")
 
 
 class NODE_MT_compositor_filter(ColumnMenu, Menu):
@@ -375,11 +396,13 @@ classes = (
     NODE_MT_compositor_node_add_all,
     NODE_MT_compositor_input,
     NODE_MT_compositor_input_constant,
+    NODE_MT_compositor_input_data,
     NODE_MT_compositor_input_scene,
     NODE_MT_compositor_output,
     NODE_MT_compositor_color,
     NODE_MT_compositor_color_adjust,
     NODE_MT_compositor_color_mix,
+    NODE_MT_compositor_color_misc,
     NODE_MT_compositor_filter,
     NODE_MT_compositor_filter_blur,
     NODE_MT_compositor_filter_effect,

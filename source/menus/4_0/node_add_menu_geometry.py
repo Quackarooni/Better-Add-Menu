@@ -632,16 +632,24 @@ class NODE_MT_geometry_node_utilities(ColumnMenu, Menu):
 
         self.draw_column(layout, menus=(NODE_MT_geometry_node_utilities_color, NODE_MT_geometry_node_utilities_vector,))
         self.draw_column(layout, menus=(NODE_MT_geometry_node_utilities_text, NODE_MT_geometry_node_utilities_field,))
-        col = self.draw_column(layout, menus=(NODE_MT_geometry_node_utilities_math,))
-
-        add_separator(col)
-        col.label(text="Miscellaneous", icon="COLLAPSEMENU")
-        add_separator(col)
-        node_add_menu.add_node_type(col, "FunctionNodeRandomValue")
-        node_add_menu.add_repeat_zone(col, label="Repeat Zone")
-        node_add_menu.add_node_type(col, "GeometryNodeSwitch")
+        self.draw_column(layout, menus=(NODE_MT_geometry_node_utilities_math, NODE_MT_geometry_node_utilities_misc))
 
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
+
+
+class NODE_MT_geometry_node_utilities_misc(Menu):
+    bl_idname = "NODE_MT_geometry_node_utilities_misc"
+    bl_label = "Miscellaneous"
+        
+    header_icon = "COLLAPSEMENU"
+
+    def draw(self, _context):
+        layout = self.layout
+        node_add_menu.add_node_type(layout, "FunctionNodeRandomValue")
+        node_add_menu.add_repeat_zone(layout, label="Repeat Zone")
+        node_add_menu.add_node_type(layout, "GeometryNodeSwitch")
+
+        #node_add_menu.draw_assets_for_catalog(layout, "Utilities/Miscellaneous")
 
 
 class NODE_MT_geometry_node_utilities_field(Menu):
@@ -842,6 +850,7 @@ classes = (
     NODE_MT_geometry_node_utilities_text,
     NODE_MT_geometry_node_utilities_field,
     NODE_MT_geometry_node_utilities_math,
+    NODE_MT_geometry_node_utilities_misc,
     NODE_MT_geometry_node_group,
 )
 
