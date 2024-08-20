@@ -21,6 +21,12 @@ class BetterAddMenuPreferences(bpy.types.AddonPreferences):
         ),
         default='SUBMENU',
         description="Specifies how nodegroup assets from the user's asset library will be displayed")
+        
+    show_header_icons: BoolProperty(
+        name="Show Header Icons",
+        default=True,
+        description="Toggle icons for header labels of submenus",
+    )
 
     if bpy.app.version >= (4, 1, 0):
         show_deprecated_menu: BoolProperty(
@@ -31,10 +37,13 @@ class BetterAddMenuPreferences(bpy.types.AddonPreferences):
 
         def draw_properties(self, layout):
             layout.prop(self, "show_deprecated_menu")
+            layout.prop(self, "show_header_icons")
             layout.separator()
             self.draw_enum_prop(layout, "show_asset_nodegroups")
     else:
         def draw_properties(self, layout):
+            layout.prop(self, "show_header_icons")
+            layout.separator()
             self.draw_enum_prop(layout, "show_asset_nodegroups")
 
 

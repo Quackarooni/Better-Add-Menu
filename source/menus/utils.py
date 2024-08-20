@@ -56,15 +56,25 @@ class ColumnMenu:
     def draw_column(layout, menus):
         col = layout.column()
 
-        for i, menu in enumerate(menus):
-            if i > 0:
-                col.separator(factor=spacing)
+        if fetch_user_preferences("show_header_icons"):
+            for i, menu in enumerate(menus):
+                if i > 0:
+                    col.separator(factor=spacing)
 
-            icon = getattr(menu, "header_icon", "NONE")
-            col.label(text=menu.bl_label, icon=icon)
-            col.separator(factor=spacing + 0.15)
-            col.menu_contents(menu.bl_idname)
-    
+                icon = getattr(menu, "header_icon", "NONE")
+            
+                col.label(text=menu.bl_label, icon=icon)
+                col.separator(factor=spacing + 0.15)
+                col.menu_contents(menu.bl_idname)
+        else:
+             for i, menu in enumerate(menus):
+                if i > 0:
+                    col.separator(factor=spacing)
+
+                col.label(text=menu.bl_label)
+                col.separator(factor=spacing + 0.15)
+                col.menu_contents(menu.bl_idname)               
+
         return col
 
 class NODE_MT_add_node_assets(Menu):
