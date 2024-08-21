@@ -42,9 +42,11 @@ Additionally, it can be called separately via a hotkey that's user-configurable.
 
 ![user_preferences.webp](docs/user_preferences.webp)
 
-- `Show Assets Menu` - Toggles visibility of the *"Assets"* menu, which contains nodegroup assets from the user's asset library.
-
 - `Show Deprecated Menu` - Toggles visibility of the *"Deprecated"* menu, which contains nodes that are intended to be phased out of use.
+
+- `Show Header Icons` - Toggle icons for header labels of submenus.
+
+- `Show Asset Nodegroups` - Toggles visibility of the *"Assets"* menu, which contains nodegroup assets from the user's asset library.
 
 #### Keymap List:
 
@@ -79,3 +81,13 @@ The search results for the built-in Add Menu show the whole chain of categories 
 Since this addon flattened all the nested menus, this makes it so the search results are different as they only list the main category they belong to, and not any of the subcategories. 
 
 This isn't significantly impactful to the search functionality, and some might even see this as a feature, as there's less clutter in the search results. Regardless, it's simply worth pointing out there is technically a difference in behavior in this regard.
+
+---
+
+## Changelog
+
+## v1.1.0
+
+- Added icons for submenu headers. *(Can be disabled via preferences)*
+
+- Add user preference for controlling how asset nodegroups are displayed.
