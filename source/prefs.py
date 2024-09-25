@@ -6,12 +6,6 @@ from .keymaps import keymap_layout
 class BetterAddMenuPreferences(bpy.types.AddonPreferences):
     bl_idname = "Better Add Menu"
 
-    show_keymaps: BoolProperty(
-        name="Show Keymaps",
-        default=False,
-        description="When enabled, displays keymap list",
-    )
-
     show_asset_nodegroups: EnumProperty(
         name="Show Asset Nodegroups",
         items=(
