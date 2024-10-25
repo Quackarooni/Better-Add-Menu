@@ -19,4 +19,8 @@ is_legacy = true
 version = [4, 2, 0]
 is_legacy = true
 
+[[builds]]
+version = [4, 3, 0]
+is_legacy = true
+
 
