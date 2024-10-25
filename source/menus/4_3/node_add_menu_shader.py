@@ -169,6 +169,11 @@ class NODE_MT_shader_shader(Menu):
         )
         node_add_menu.add_node_type(
             layout,
+            "ShaderNodeBsdfMetallic",
+            poll=object_shader_nodes_poll(context),
+        )
+        node_add_menu.add_node_type(
+            layout,
             "ShaderNodeMixShader",
         )
         node_add_menu.add_node_type(
