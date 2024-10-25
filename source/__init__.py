@@ -19,7 +19,7 @@ bl_info = {
     "name": "Better Add Menu",
     "author": "Quackers",
     "description": "UI improvements and quality-of-life tweaks for the 'Add Node' menu for Node Editors",
-    "version" : (1, 1, 0),
+    "version" : (1, 1, 1),
     "blender": (4, 0, 0),
     "location": "Node Editor",
     "category": "Node",
