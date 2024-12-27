@@ -299,6 +299,7 @@ class NODE_MT_shader_texture(Menu):
         node_add_menu.add_node_type(layout, "ShaderNodeTexBrick")
         node_add_menu.add_node_type(layout, "ShaderNodeTexChecker")
         node_add_menu.add_node_type(layout, "ShaderNodeTexEnvironment")
+        node_add_menu.add_node_type(layout, "ShaderNodeTexGabor")
         node_add_menu.add_node_type(layout, "ShaderNodeTexGradient")
         node_add_menu.add_node_type(layout, "ShaderNodeTexIES")
         node_add_menu.add_node_type(layout, "ShaderNodeTexImage")
