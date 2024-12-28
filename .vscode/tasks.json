@@ -11,6 +11,24 @@
             "presentation": {
                 "close": true
             } 
-        }
+        },
+        {
+            "label": "Install Versions",
+            "type": "shell",
+            "command": "python \"install.py\" SINGLE_VERSION",
+            "group": "build",
+        },
+        {
+            "label": "Install Versions (Multi-version)",
+            "type": "shell",
+            "command": "python \"install.py\" MULTI_VERSION",
+            "group": "build",
+        },
+        {
+            "label": "Install Versions (Symlink)",
+            "type": "shell",
+            "command": "python \"install.py\" SYMLINK",
+            "group": "build",
+        } 
     ]
 }
