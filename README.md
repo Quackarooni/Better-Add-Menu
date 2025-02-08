@@ -2,7 +2,7 @@
 
 UI improvements and quality-of-life tweaks for the 'Add Node' menu in Blender's Node Editor.
 
-<u>Supported Versions:</u> *Blender 4.0, 4.1, 4.2*
+<u>Supported Versions:</u> *Blender 4.0 to 4.4*
 
 ---
 
