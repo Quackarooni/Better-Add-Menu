@@ -39,17 +39,14 @@ class NODE_MT_geometry_node_utilities_color(Menu):
 
     header_icon = "COLOR"
 
-    def draw(self, _context):
+    def draw(self, context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "ShaderNodeBlackbody")
         node_add_menu.add_node_type(layout, "ShaderNodeValToRGB")
         node_add_menu.add_node_type(layout, "ShaderNodeRGBCurve")
         add_separator(layout)
         node_add_menu.add_node_type(layout, "FunctionNodeCombineColor")
-        props = node_add_menu.add_node_type(layout, "ShaderNodeMix", label=iface_("Mix Color"))
-        ops = props.settings.add()
-        ops.name = "data_type"
-        ops.value = "'RGBA'"
+        node_add_menu.add_color_mix_node(context, layout)
         node_add_menu.add_node_type(layout, "FunctionNodeSeparateColor")
         #node_add_menu.draw_assets_for_catalog(layout, "Utilities/Color")
 
@@ -134,7 +131,6 @@ class NODE_MT_geometry_node_curve_operations(Menu):
         layout = self.layout
         node_add_menu.add_node_type(layout, "GeometryNodeCurveToMesh")
         node_add_menu.add_node_type(layout, "GeometryNodeCurveToPoints")
-        node_add_menu.add_node_type(layout, "GeometryNodeCurvesToGreasePencil")
         node_add_menu.add_node_type(layout, "GeometryNodeGreasePencilToCurves")
         add_separator(layout)
         node_add_menu.add_node_type(layout, "GeometryNodeFillCurve")
@@ -144,7 +140,6 @@ class NODE_MT_geometry_node_curve_operations(Menu):
         node_add_menu.add_node_type(layout, "GeometryNodeSubdivideCurve")
         node_add_menu.add_node_type(layout, "GeometryNodeTrimCurve")
         add_separator(layout)
-        node_add_menu.add_node_type(layout, "GeometryNodeMergeLayers")
         node_add_menu.add_node_type(layout, "GeometryNodeInterpolateCurves")
         node_add_menu.add_node_type(layout, "GeometryNodeDeformCurvesOnSurface")
         #node_add_menu.draw_assets_for_catalog(layout, "Curve/Operations")
@@ -181,6 +176,56 @@ class NODE_MT_geometry_node_topology_curve(Menu):
         node_add_menu.add_node_type(layout, "GeometryNodeOffsetPointInCurve")
         node_add_menu.add_node_type(layout, "GeometryNodePointsOfCurve")
         #node_add_menu.draw_assets_for_catalog(layout, "Curve/Topology")
+
+
+class NODE_MT_geometry_node_grease_pencil(ColumnMenu, Menu):
+    bl_idname = "NODE_MT_geometry_node_grease_pencil"
+    bl_label = "Grease Pencil"
+
+    def draw(self, _context):
+        layout = self.layout.row()
+        self.draw_column(layout, menus=(NODE_MT_geometry_node_grease_pencil_read, NODE_MT_geometry_node_grease_pencil_write,))
+        self.draw_column(layout, menus=(NODE_MT_geometry_node_grease_pencil_operations,))
+        #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
+
+
+class NODE_MT_geometry_node_grease_pencil_read(Menu):
+    bl_idname = "NODE_MT_geometry_node_grease_pencil_read"
+    bl_label = "Read"
+
+    header_icon = "COPYDOWN"
+
+    def draw(self, _context):
+        layout = self.layout
+        node_add_menu.add_node_type(layout, "GeometryNodeInputNamedLayerSelection")
+        #node_add_menu.draw_assets_for_catalog(layout, "Grease Pencil/Read")
+
+
+class NODE_MT_geometry_node_grease_pencil_write(Menu):
+    bl_idname = "NODE_MT_geometry_node_grease_pencil_write"
+    bl_label = "Write"
+
+    header_icon = "CURRENT_FILE"
+
+    def draw(self, _context):
+        layout = self.layout
+        node_add_menu.add_node_type(layout, "GeometryNodeSetGreasePencilColor")
+        node_add_menu.add_node_type(layout, "GeometryNodeSetGreasePencilDepth")
+        node_add_menu.add_node_type(layout, "GeometryNodeSetGreasePencilSoftness")
+        #node_add_menu.draw_assets_for_catalog(layout, "Grease Pencil/Write")
+
+
+class NODE_MT_geometry_node_grease_pencil_operations(Menu):
+    bl_idname = "NODE_MT_geometry_node_grease_pencil_operations"
+    bl_label = "Operations"
+
+    header_icon = "MODIFIER"
+
+    def draw(self, _context):
+        layout = self.layout
+        node_add_menu.add_node_type(layout, "GeometryNodeGreasePencilToCurves")
+        node_add_menu.add_node_type(layout, "GeometryNodeMergeLayers")
+        #node_add_menu.draw_assets_for_catalog(layout, "Grease Pencil/Operations")
 
 
 class NODE_MT_geometry_node_geometry(ColumnMenu, Menu):
@@ -305,16 +350,9 @@ class NODE_MT_geometry_node_input(ColumnMenu, Menu):
 
     def draw(self, context):
         layout = self.layout.row()
-        is_not_tool = context.space_data.geometry_nodes_type != 'TOOL'
-        use_import = context.preferences.experimental.use_new_file_import_nodes
 
         self.draw_column(layout, menus=(NODE_MT_geometry_node_input_constant,))
-        if is_not_tool and use_import:
-            self.draw_column(layout, menus=(NODE_MT_geometry_node_input_gizmo, NODE_MT_geometry_node_input_import,))
-        elif is_not_tool:
-            self.draw_column(layout, menus=(NODE_MT_geometry_node_input_gizmo,))
-        elif use_import:
-            self.draw_column(layout, menus=(NODE_MT_geometry_node_input_import,))
+        self.draw_column(layout, menus=(NODE_MT_geometry_node_input_gizmo, NODE_MT_geometry_node_input_import,))
         #self.draw_column(layout, menu_name="NODE_MT_geometry_node_input_group")
         self.draw_column(layout, menus=(NODE_MT_geometry_node_input_scene,))
 
@@ -370,6 +408,7 @@ class NODE_MT_geometry_node_input_scene(ColumnMenu, Menu):
 
     def draw(self, context):
         layout = self.layout
+        node_add_menu.add_node_type_with_outputs(context, layout, "GeometryNodeCameraInfo", ["Projection Matrix", "Focal Length", "Sensor", "Shift", "Clip Start", "Clip End", "Focus Distance", "Is Orthographic", "Orthographic Scale"])
         node_add_menu.add_node_type(layout, "GeometryNodeCollectionInfo")
         node_add_menu.add_node_type(layout, "GeometryNodeImageInfo")
         node_add_menu.add_node_type(layout, "GeometryNodeObjectInfo")
@@ -378,14 +417,14 @@ class NODE_MT_geometry_node_input_scene(ColumnMenu, Menu):
         node_add_menu.add_node_type(layout, "GeometryNodeInputActiveCamera")
         node_add_menu.add_node_type(layout, "GeometryNodeIsViewport")
         node_add_menu.add_node_type(layout, "GeometryNodeInputNamedLayerSelection")
-        node_add_menu.add_node_type(layout, "GeometryNodeInputSceneTime")
+        node_add_menu.add_node_type_with_outputs(context, layout, "GeometryNodeInputSceneTime", ["Frame", "Seconds"])
         node_add_menu.add_node_type(layout, "GeometryNodeSelfObject")
 
         if context.space_data.geometry_nodes_type == 'TOOL':
             add_separator(layout)
             node_add_menu.add_node_type(layout, "GeometryNodeTool3DCursor")
-            node_add_menu.add_node_type(layout, "GeometryNodeToolMousePosition")
-            node_add_menu.add_node_type(layout, "GeometryNodeViewportTransform")
+            node_add_menu.add_node_type_with_outputs(context, layout, "GeometryNodeToolMousePosition", ["Mouse X", "Mouse Y", "Region Width", "Region Height"])
+            node_add_menu.add_node_type_with_outputs(context, layout, "GeometryNodeViewportTransform", ["Projection", "View", "Is Orthographic"])
 
         #node_add_menu.draw_assets_for_catalog(layout, "Input/Scene")
 
@@ -412,11 +451,12 @@ class NODE_MT_geometry_node_input_import(Menu):
 
     def draw(self, _context):
         layout = self.layout
-        node_add_menu.add_node_type(layout, "GeometryNodeImportCSV")
-        node_add_menu.add_node_type(layout, "GeometryNodeImportOBJ")
-        node_add_menu.add_node_type(layout, "GeometryNodeImportPLY")
-        node_add_menu.add_node_type(layout, "GeometryNodeImportSTL")
-        node_add_menu.add_node_type(layout, "GeometryNodeImportText")
+        node_add_menu.add_node_type(layout, "GeometryNodeImportCSV", label="CSV (.csv)")
+        node_add_menu.add_node_type(layout, "GeometryNodeImportOBJ", label="Wavefront (.obj)")
+        node_add_menu.add_node_type(layout, "GeometryNodeImportPLY", label="Stanford PLY (.ply)")
+        node_add_menu.add_node_type(layout, "GeometryNodeImportSTL", label="STL (.stl)")
+        node_add_menu.add_node_type(layout, "GeometryNodeImportText", label="Text (.txt)")
+        node_add_menu.add_node_type(layout, "GeometryNodeImportVDB", label="OpenVDB (.vdb)")
         #node_add_menu.draw_assets_for_catalog(layout, "Input/Import")
 
 
@@ -434,6 +474,7 @@ class NODE_MT_geometry_node_instance(Menu):
         node_add_menu.add_node_type(layout, "GeometryNodeScaleInstances")
         node_add_menu.add_node_type(layout, "GeometryNodeTranslateInstances")
         add_separator(layout)
+        node_add_menu.add_node_type(layout, "GeometryNodeInputInstanceBounds")
         node_add_menu.add_node_type(layout, "GeometryNodeInputInstanceRotation")
         node_add_menu.add_node_type(layout, "GeometryNodeInputInstanceScale")
         node_add_menu.add_node_type(layout, "GeometryNodeInstanceTransform")
@@ -531,6 +572,7 @@ class NODE_MT_geometry_node_mesh_write(Menu):
         layout = self.layout
         if context.space_data.geometry_nodes_type == 'TOOL':
             node_add_menu.add_node_type(layout, "GeometryNodeToolSetFaceSet")
+        node_add_menu.add_node_type(layout, "GeometryNodeSetMeshNormal")
         node_add_menu.add_node_type(layout, "GeometryNodeSetShadeSmooth")
         #node_add_menu.draw_assets_for_catalog(layout, "Mesh/Write")
 
@@ -611,11 +653,11 @@ class NODE_MT_geometry_node_output(Menu):
     bl_idname = "NODE_MT_category_GEO_OUTPUT"
     bl_label = "Output"
 
-    def draw(self, _context):
+    def draw(self, context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "NodeGroupOutput")
         node_add_menu.add_node_type(layout, "GeometryNodeViewer")
-        node_add_menu.add_node_type(layout, "GeometryNodeWarning")
+        node_add_menu.add_node_type_with_searchable_enum(context, layout, "GeometryNodeWarning", "warning_type")
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
@@ -660,10 +702,12 @@ class NODE_MT_geometry_node_utilities_text(Menu):
     def draw(self, _context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "GeometryNodeStringJoin")
+        node_add_menu.add_node_type(layout, "FunctionNodeMatchString")
         node_add_menu.add_node_type(layout, "FunctionNodeReplaceString")
         node_add_menu.add_node_type(layout, "FunctionNodeSliceString")
         add_separator(layout)
         node_add_menu.add_node_type(layout, "FunctionNodeFindInString")
+        node_add_menu.add_node_type(layout, "FunctionNodeFormatString")
         node_add_menu.add_node_type(layout, "FunctionNodeStringLength")
         node_add_menu.add_node_type(layout, "GeometryNodeStringToCurves")
         node_add_menu.add_node_type(layout, "FunctionNodeValueToString")
@@ -711,7 +755,7 @@ class NODE_MT_geometry_node_utilities_misc(Menu):
         
     header_icon = "COLLAPSEMENU"
 
-    def draw(self, _context):
+    def draw(self, context):
         layout = self.layout
         node_add_menu.add_foreach_geometry_element_zone(layout, label="For Each Element Zone")
         node_add_menu.add_node_type(layout, "GeometryNodeIndexSwitch")
@@ -720,6 +764,12 @@ class NODE_MT_geometry_node_utilities_misc(Menu):
         node_add_menu.add_repeat_zone(layout, label="Repeat Zone")
         node_add_menu.add_node_type(layout, "GeometryNodeSwitch")
 
+        if context.preferences.experimental.use_bundle_and_closure_nodes:
+            add_separator(layout)
+            node_add_menu.add_closure_zone(layout, label="Closure")
+            node_add_menu.add_node_type(layout, "GeometryNodeEvaluateClosure")
+            node_add_menu.add_node_type(layout, "GeometryNodeCombineBundle")
+            node_add_menu.add_node_type(layout, "GeometryNodeSeparateBundle")
         #node_add_menu.draw_assets_for_catalog(layout, "Utilities/Miscellaneous")
 
 
@@ -734,6 +784,9 @@ class NODE_MT_geometry_node_utilities_field(Menu):
         node_add_menu.add_node_type(layout, "GeometryNodeAccumulateField")
         node_add_menu.add_node_type(layout, "GeometryNodeFieldAtIndex")
         node_add_menu.add_node_type(layout, "GeometryNodeFieldOnDomain")
+        node_add_menu.add_node_type(layout, "GeometryNodeFieldAverage")
+        node_add_menu.add_node_type(layout, "GeometryNodeFieldMinAndMax")
+        node_add_menu.add_node_type(layout, "GeometryNodeFieldVariance")
         #node_add_menu.draw_assets_for_catalog(layout, "Utilities/Field")
 
 
@@ -795,11 +848,12 @@ class NODE_MT_geometry_node_utilities_math(Menu):
 
     header_icon = "CON_TRANSFORM_CACHE"
 
-    def draw(self, _context):
-        layout = self.layout
-        node_add_menu.add_node_type(layout, "FunctionNodeBooleanMath")
-        node_add_menu.add_node_type(layout, "FunctionNodeIntegerMath")
-        node_add_menu.add_node_type(layout, "ShaderNodeMath")
+    def draw(self, context):
+        layout = self.layout        
+        node_add_menu.add_node_type_with_searchable_enum(context, layout, "FunctionNodeBitMath", "operation", search_weight=-1.0)
+        node_add_menu.add_node_type_with_searchable_enum(context, layout, "FunctionNodeBooleanMath", "operation")
+        node_add_menu.add_node_type_with_searchable_enum(context, layout, "FunctionNodeIntegerMath", "operation")
+        node_add_menu.add_node_type_with_searchable_enum(context, layout, "ShaderNodeMath", "operation")
         add_separator(layout)
         node_add_menu.add_node_type(layout, "ShaderNodeClamp")
         node_add_menu.add_node_type(layout, "FunctionNodeCompare")
@@ -830,10 +884,10 @@ class NODE_MT_geometry_node_utilities_vector(Menu):
 
     header_icon = "ORIENTATION_GLOBAL"
 
-    def draw(self, _context):
+    def draw(self, context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "ShaderNodeVectorCurve")
-        node_add_menu.add_node_type(layout, "ShaderNodeVectorMath")
+        node_add_menu.add_node_type_with_searchable_enum(context, layout, "ShaderNodeVectorMath", "operation")
         node_add_menu.add_node_type(layout, "ShaderNodeVectorRotate")
         add_separator(layout)
         node_add_menu.add_node_type(layout, "ShaderNodeCombineXYZ")
@@ -881,6 +935,7 @@ class NODE_MT_geometry_node_volume_read(Menu):
     def draw(self, context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "GeometryNodeGetNamedGrid")
+        node_add_menu.add_node_type(layout, "GeometryNodeGridInfo")
         #node_add_menu.draw_assets_for_catalog(layout, "Volume/Read")
 
 
@@ -960,6 +1015,7 @@ class NODE_MT_geometry_node_add_all(Menu):
         layout.menu("NODE_MT_geometry_node_GEO_GEOMETRY")
         add_separator(layout)
         layout.menu("NODE_MT_geometry_node_GEO_CURVE")
+        layout.menu("NODE_MT_geometry_node_grease_pencil")
         layout.menu("NODE_MT_geometry_node_GEO_INSTANCE")
         layout.menu("NODE_MT_geometry_node_GEO_MESH")
         layout.menu("NODE_MT_category_GEO_POINT")
@@ -1019,6 +1075,10 @@ classes = (
     NODE_MT_geometry_node_curve_sample,
     NODE_MT_geometry_node_curve_write,
     NODE_MT_geometry_node_curve_operations,
+    NODE_MT_geometry_node_grease_pencil,
+    NODE_MT_geometry_node_grease_pencil_read,
+    NODE_MT_geometry_node_grease_pencil_write,
+    NODE_MT_geometry_node_grease_pencil_operations,
     NODE_MT_geometry_node_instance,
     NODE_MT_geometry_node_mesh,
     NODE_MT_geometry_node_mesh_read,
