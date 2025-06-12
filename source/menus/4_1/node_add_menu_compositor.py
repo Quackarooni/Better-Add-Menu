@@ -26,9 +26,9 @@ class NODE_MT_compositor_input(ColumnMenu, Menu):
 
         layout = self.layout.row()
 
-        self.draw_column(layout, menus=(NODE_MT_compositor_input_constant, ))
-        self.draw_column(layout, menus=(NODE_MT_compositor_input_data, ))
-        self.draw_column(layout, menus=(NODE_MT_compositor_input_scene, ))
+        self.draw_column(layout, menus=(NODE_MT_compositor_input_constant))
+        self.draw_column(layout, menus=(NODE_MT_compositor_input_data))
+        self.draw_column(layout, menus=(NODE_MT_compositor_input_scene))
 
         #if is_group:
         #    add_separator(col)
