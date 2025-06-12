@@ -226,19 +226,22 @@ class NODE_MT_shader_texture(Menu):
     def draw(self, _context):
         layout = self.layout
 
+        node_add_menu.add_node_type(layout, "ShaderNodeTexImage")
+        add_separator(layout)
+        node_add_menu.add_node_type(layout, "ShaderNodeTexNoise")
+        node_add_menu.add_node_type(layout, "ShaderNodeTexWhiteNoise")
+        add_separator(layout)
         node_add_menu.add_node_type(layout, "ShaderNodeTexBrick")
         node_add_menu.add_node_type(layout, "ShaderNodeTexChecker")
-        node_add_menu.add_node_type(layout, "ShaderNodeTexEnvironment")
         node_add_menu.add_node_type(layout, "ShaderNodeTexGradient")
-        node_add_menu.add_node_type(layout, "ShaderNodeTexIES")
-        node_add_menu.add_node_type(layout, "ShaderNodeTexImage")
         node_add_menu.add_node_type(layout, "ShaderNodeTexMagic")
-        node_add_menu.add_node_type(layout, "ShaderNodeTexNoise")
-        node_add_menu.add_node_type(layout, "ShaderNodeTexPointDensity")
-        node_add_menu.add_node_type(layout, "ShaderNodeTexSky")
         node_add_menu.add_node_type(layout, "ShaderNodeTexVoronoi")
         node_add_menu.add_node_type(layout, "ShaderNodeTexWave")
-        node_add_menu.add_node_type(layout, "ShaderNodeTexWhiteNoise")
+        add_separator(layout)
+        node_add_menu.add_node_type(layout, "ShaderNodeTexEnvironment")
+        node_add_menu.add_node_type(layout, "ShaderNodeTexIES")
+        node_add_menu.add_node_type(layout, "ShaderNodeTexPointDensity")
+        node_add_menu.add_node_type(layout, "ShaderNodeTexSky")
 
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 

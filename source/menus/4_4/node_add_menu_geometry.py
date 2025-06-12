@@ -676,16 +676,18 @@ class NODE_MT_geometry_node_texture(Menu):
 
     def draw(self, _context):
         layout = self.layout
+        node_add_menu.add_node_type(layout, "GeometryNodeImageTexture")
+        add_separator(layout)
+        node_add_menu.add_node_type(layout, "ShaderNodeTexNoise")
+        node_add_menu.add_node_type(layout, "ShaderNodeTexWhiteNoise")
+        add_separator(layout)
         node_add_menu.add_node_type(layout, "ShaderNodeTexBrick")
         node_add_menu.add_node_type(layout, "ShaderNodeTexChecker")
         node_add_menu.add_node_type(layout, "ShaderNodeTexGabor")
         node_add_menu.add_node_type(layout, "ShaderNodeTexGradient")
-        node_add_menu.add_node_type(layout, "GeometryNodeImageTexture")
         node_add_menu.add_node_type(layout, "ShaderNodeTexMagic")
-        node_add_menu.add_node_type(layout, "ShaderNodeTexNoise")
         node_add_menu.add_node_type(layout, "ShaderNodeTexVoronoi")
         node_add_menu.add_node_type(layout, "ShaderNodeTexWave")
-        node_add_menu.add_node_type(layout, "ShaderNodeTexWhiteNoise")
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
