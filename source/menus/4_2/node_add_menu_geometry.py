@@ -604,7 +604,7 @@ class NODE_MT_geometry_node_simulation(Menu):
 
     def draw(self, _context):
         layout = self.layout
-        node_add_menu.add_simulation_zone(layout, label="Simulation Zone")
+        #node_add_menu.add_simulation_zone(layout, label="Simulation Zone")
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
@@ -671,7 +671,7 @@ class NODE_MT_geometry_node_utilities_misc(Menu):
         node_add_menu.add_node_type(layout, "GeometryNodeIndexSwitch")
         node_add_menu.add_node_type(layout, "GeometryNodeMenuSwitch")
         node_add_menu.add_node_type(layout, "FunctionNodeRandomValue")
-        node_add_menu.add_repeat_zone(layout, label="Repeat Zone")
+        #node_add_menu.add_repeat_zone(layout, label="Repeat Zone")
         node_add_menu.add_node_type(layout, "GeometryNodeSwitch")
 
         #node_add_menu.draw_assets_for_catalog(layout, "Utilities/Miscellaneous")
@@ -887,6 +887,18 @@ class NODE_MT_geometry_node_volume_primitives(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, "Volume/Primitives")
 
 
+class NODE_MT_geometry_node_zones(Menu):
+    bl_idname = "NODE_MT_geometry_node_zones"
+    bl_label = "Zones"
+
+    header_icon = "STICKY_UVS_LOC"
+
+    def draw(self, context):
+        layout = self.layout
+        node_add_menu.add_repeat_zone(layout, label="Repeat")
+        node_add_menu.add_simulation_zone(layout, label="Simulation")
+
+
 class NODE_MT_geometry_node_group(Menu):
     bl_idname = "NODE_MT_geometry_node_GEO_GROUP"
     bl_label = "Group"
@@ -918,13 +930,13 @@ class NODE_MT_geometry_node_add_all(Menu):
         layout.menu("NODE_MT_category_GEO_PRIMITIVES")
         layout.menu("NODE_MT_category_GEO_TOPOLOGY")
         add_separator(layout)
-        layout.menu("NODE_MT_category_simulation")
-        add_separator(layout)
         layout.menu("NODE_MT_geometry_node_GEO_MATERIAL")
         layout.menu("NODE_MT_category_utilities_matrix")
         layout.menu("NODE_MT_category_GEO_UTILITIES_ROTATION")
         layout.menu("NODE_MT_category_GEO_TEXTURE")
         layout.menu("NODE_MT_category_GEO_UTILITIES")
+        add_separator(layout)
+        layout.menu("NODE_MT_geometry_node_zones")
         add_separator(layout)
         layout.menu("NODE_MT_geometry_node_GEO_GROUP")
         layout.menu("NODE_MT_category_layout")
@@ -999,6 +1011,7 @@ classes = (
     NODE_MT_geometry_node_utilities_field,
     NODE_MT_geometry_node_utilities_math,
     NODE_MT_geometry_node_utilities_misc,
+    NODE_MT_geometry_node_zones,
     NODE_MT_geometry_node_group,
     NODE_MT_geometry_node_deprecated,
 )
