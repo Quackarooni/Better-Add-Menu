@@ -9,7 +9,7 @@ from bpy.app.translations import (
     contexts as i18n_contexts,
 )
 
-from ..utils import add_separator, draw_asset_menu, draw_node_group_add_menu
+from ..utils import ColumnMenu, add_separator, draw_asset_menu, draw_node_group_add_menu
 
 # only show input/output nodes when editing line style node trees
 def line_style_shader_nodes_poll(context):
@@ -103,37 +103,72 @@ class NODE_MT_shader_output(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
-class NODE_MT_shader_shader(Menu):
+class NODE_MT_shader_shader(ColumnMenu, Menu):
     bl_idname = "NODE_MT_category_shader_shader"
     bl_label = "Shader"
+
+    def draw(self, context):
+        layout = self.layout.row()
+
+        self.draw_column(layout, menus=(NODE_MT_shader_shader_basic, NODE_MT_shader_shader_volume_and_scatter,))
+        self.draw_column(layout, menus=(NODE_MT_shader_shader_bsdf,))
+        #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
+
+
+class NODE_MT_shader_shader_basic(Menu):
+    bl_idname = "NODE_MT_shader_shader_basic"
+    bl_label = "Basic"
+        
+    header_icon = "NODE_MATERIAL"
 
     def draw(self, context):
         layout = self.layout
 
         node_add_menu.add_node_type(layout, "ShaderNodeAddShader")
+        node_add_menu.add_node_type(layout, "ShaderNodeMixShader")
+        add_separator(layout)
+
         node_add_menu.add_node_type(layout, "ShaderNodeBackground", poll=world_shader_nodes_poll(context))
-        node_add_menu.add_node_type(layout, "ShaderNodeBsdfDiffuse", poll=object_shader_nodes_poll(context))
         node_add_menu.add_node_type(layout, "ShaderNodeEmission")
+        node_add_menu.add_node_type(layout, "ShaderNodeHoldout", poll=object_shader_nodes_poll(context))
+
+
+class NODE_MT_shader_shader_bsdf(Menu):
+    bl_idname = "NODE_MT_shader_shader_bsdf"
+    bl_label = "BSDF"
+        
+    header_icon = "SHADING_TEXTURE"
+
+    def draw(self, context):
+        layout = self.layout
+        node_add_menu.add_node_type(layout, "ShaderNodeBsdfDiffuse", poll=object_shader_nodes_poll(context))
         node_add_menu.add_node_type(layout, "ShaderNodeBsdfGlass", poll=object_shader_nodes_poll(context))
         node_add_menu.add_node_type(layout, "ShaderNodeBsdfGlossy", poll=object_shader_nodes_poll(context))
         node_add_menu.add_node_type(layout, "ShaderNodeBsdfHair", poll=object_not_eevee_shader_nodes_poll(context))
-        node_add_menu.add_node_type(layout, "ShaderNodeHoldout", poll=object_shader_nodes_poll(context))
-        node_add_menu.add_node_type(layout, "ShaderNodeMixShader")
         node_add_menu.add_node_type(layout, "ShaderNodeBsdfPrincipled", poll=object_shader_nodes_poll(context))
         node_add_menu.add_node_type(layout, "ShaderNodeBsdfHairPrincipled", poll=object_not_eevee_shader_nodes_poll(context))
-        node_add_menu.add_node_type(layout, "ShaderNodeVolumePrincipled")
         node_add_menu.add_node_type(layout, "ShaderNodeBsdfRayPortal", poll=object_not_eevee_shader_nodes_poll(context))
         node_add_menu.add_node_type(layout, "ShaderNodeBsdfRefraction", poll=object_shader_nodes_poll(context))
         node_add_menu.add_node_type(layout, "ShaderNodeBsdfSheen", poll=object_not_eevee_shader_nodes_poll(context))
         node_add_menu.add_node_type(layout, "ShaderNodeEeveeSpecular", poll=object_eevee_shader_nodes_poll(context))
-        node_add_menu.add_node_type(layout, "ShaderNodeSubsurfaceScattering", poll=object_shader_nodes_poll(context))
         node_add_menu.add_node_type(layout, "ShaderNodeBsdfToon", poll=object_not_eevee_shader_nodes_poll(context))
         node_add_menu.add_node_type(layout, "ShaderNodeBsdfTranslucent", poll=object_shader_nodes_poll(context))
         node_add_menu.add_node_type(layout, "ShaderNodeBsdfTransparent", poll=object_shader_nodes_poll(context))
+
+
+class NODE_MT_shader_shader_volume_and_scatter(Menu):
+    bl_idname = "NODE_MT_shader_shader_volume_and_scatter"
+    bl_label = "Volume & Scatter"
+        
+    header_icon = "OUTLINER_DATA_VOLUME"
+
+    def draw(self, context):
+        layout = self.layout
+
+        node_add_menu.add_node_type(layout, "ShaderNodeSubsurfaceScattering", poll=object_shader_nodes_poll(context))
+        node_add_menu.add_node_type(layout, "ShaderNodeVolumePrincipled")
         node_add_menu.add_node_type(layout, "ShaderNodeVolumeAbsorption")
         node_add_menu.add_node_type(layout, "ShaderNodeVolumeScatter")
-
-        #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
 class NODE_MT_shader_color(Menu):
@@ -280,6 +315,9 @@ classes = (
     NODE_MT_shader_color,
     NODE_MT_shader_converter,
     NODE_MT_shader_shader,
+    NODE_MT_shader_shader_basic,
+    NODE_MT_shader_shader_bsdf,
+    NODE_MT_shader_shader_volume_and_scatter,
     NODE_MT_shader_texture,
     NODE_MT_shader_vector,
     NODE_MT_shader_script,
