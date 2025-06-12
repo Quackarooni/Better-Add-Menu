@@ -1,3 +1,5 @@
+import bpy
+
 from bpy.types import Menu
 from bl_ui.node_add_menu import add_node_type
 
@@ -52,30 +54,62 @@ def draw_node_group_add_menu(context, layout):
             ops.value = "bpy.data.node_groups[%r]" % group.name
 
 class ColumnMenu:
-    @staticmethod
-    def draw_column(layout, menus):
-        col = layout.column()
-
-        if fetch_user_preferences("show_header_icons"):
-            for i, menu in enumerate(menus):
-                if i > 0:
-                    col.separator(factor=spacing)
-
-                icon = getattr(menu, "header_icon", "NONE")
+    if bpy.app.version >= (4, 5, 0):
+        @staticmethod
+        def draw_column(layout, menus):
+            col = layout.column()
             
-                col.label(text=menu.bl_label, icon=icon)
-                col.separator(factor=spacing + 0.15)
-                col.menu_contents(menu.bl_idname)
-        else:
-             for i, menu in enumerate(menus):
-                if i > 0:
-                    col.separator(factor=spacing)
+            if getattr(bpy.context, "is_menu_search", False):
+                for menu in menus:
+                    col.menu(menu.bl_idname)
+            else:
+                if fetch_user_preferences("show_header_icons"):
+                    for i, menu in enumerate(menus):
+                        if i > 0:
+                            col.separator(factor=spacing)
 
-                col.label(text=menu.bl_label)
-                col.separator(factor=spacing + 0.15)
-                col.menu_contents(menu.bl_idname)               
+                        icon = getattr(menu, "header_icon", "NONE")
+                    
+                        col.label(text=menu.bl_label, icon=icon)
+                        col.separator(factor=spacing + 0.15)
+                        col.menu_contents(menu.bl_idname)
+                else:
+                    for i, menu in enumerate(menus):
+                        if i > 0:
+                            col.separator(factor=spacing)
 
-        return col
+                        col.label(text=menu.bl_label)
+                        col.separator(factor=spacing + 0.15)
+                        col.menu_contents(menu.bl_idname)               
+
+                return col
+            
+    else:
+        @staticmethod
+        def draw_column(layout, menus):
+            col = layout.column()
+
+            if fetch_user_preferences("show_header_icons"):
+                for i, menu in enumerate(menus):
+                    if i > 0:
+                        col.separator(factor=spacing)
+
+                    icon = getattr(menu, "header_icon", "NONE")
+                
+                    col.label(text=menu.bl_label, icon=icon)
+                    col.separator(factor=spacing + 0.15)
+                    col.menu_contents(menu.bl_idname)
+            else:
+                for i, menu in enumerate(menus):
+                    if i > 0:
+                        col.separator(factor=spacing)
+
+                    col.label(text=menu.bl_label)
+                    col.separator(factor=spacing + 0.15)
+                    col.menu_contents(menu.bl_idname)               
+
+            return col
+
 
 class NODE_MT_add_node_assets(Menu):
     bl_idname = __qualname__
