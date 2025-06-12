@@ -62,10 +62,11 @@ class NODE_MT_compositor_input_data(Menu):
         layout = self.layout
         
         node_add_menu.add_node_type(layout, "CompositorNodeBokehImage")
-        node_add_menu.add_node_type(layout, "CompositorNodeImage")
         node_add_menu.add_node_type(layout, "CompositorNodeMask")
         node_add_menu.add_node_type(layout, "CompositorNodeMovieClip")
         node_add_menu.add_node_type(layout, "CompositorNodeTexture")
+        add_separator(layout)
+        node_add_menu.add_node_type(layout, "CompositorNodeImage")
         node_add_menu.add_node_type(layout, "CompositorNodeImageInfo")
         node_add_menu.add_node_type(layout, "CompositorNodeImageCoordinates")
 
@@ -419,8 +420,8 @@ class NODE_MT_compositor_node_add_all(Menu):
         add_separator(layout)
         layout.menu("NODE_MT_category_compositor_tracking")
         add_separator(layout)
-        layout.menu("NODE_MT_category_compositor_transform")
         layout.menu("NODE_MT_category_compositor_texture")
+        layout.menu("NODE_MT_category_compositor_transform")
         layout.menu("NODE_MT_category_compositor_utilities")
         layout.menu("NODE_MT_category_compositor_vector")
         add_separator(layout)
