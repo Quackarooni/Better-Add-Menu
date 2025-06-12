@@ -144,17 +144,20 @@ class NODE_MT_shader_shader_bsdf(Menu):
         node_add_menu.add_node_type(layout, "ShaderNodeBsdfDiffuse", poll=object_shader_nodes_poll(context))
         node_add_menu.add_node_type(layout, "ShaderNodeBsdfGlass", poll=object_shader_nodes_poll(context))
         node_add_menu.add_node_type(layout, "ShaderNodeBsdfGlossy", poll=object_shader_nodes_poll(context))
-        node_add_menu.add_node_type(layout, "ShaderNodeBsdfHair", poll=object_not_eevee_shader_nodes_poll(context))
         node_add_menu.add_node_type(layout, "ShaderNodeBsdfMetallic", poll=object_shader_nodes_poll(context))
         node_add_menu.add_node_type(layout, "ShaderNodeBsdfPrincipled", poll=object_shader_nodes_poll(context))
-        node_add_menu.add_node_type(layout, "ShaderNodeBsdfHairPrincipled", poll=object_not_eevee_shader_nodes_poll(context))
-        node_add_menu.add_node_type(layout, "ShaderNodeBsdfRayPortal", poll=object_not_eevee_shader_nodes_poll(context))
         node_add_menu.add_node_type(layout, "ShaderNodeBsdfRefraction", poll=object_shader_nodes_poll(context))
-        node_add_menu.add_node_type(layout, "ShaderNodeBsdfSheen", poll=object_not_eevee_shader_nodes_poll(context))
         node_add_menu.add_node_type(layout, "ShaderNodeEeveeSpecular", poll=object_eevee_shader_nodes_poll(context))
-        node_add_menu.add_node_type(layout, "ShaderNodeBsdfToon", poll=object_not_eevee_shader_nodes_poll(context))
         node_add_menu.add_node_type(layout, "ShaderNodeBsdfTranslucent", poll=object_shader_nodes_poll(context))
         node_add_menu.add_node_type(layout, "ShaderNodeBsdfTransparent", poll=object_shader_nodes_poll(context))
+
+        if object_not_eevee_shader_nodes_poll(context):
+            add_separator(layout)
+            node_add_menu.add_node_type(layout, "ShaderNodeBsdfHair", poll=object_not_eevee_shader_nodes_poll(context))
+            node_add_menu.add_node_type(layout, "ShaderNodeBsdfHairPrincipled", poll=object_not_eevee_shader_nodes_poll(context))
+            node_add_menu.add_node_type(layout, "ShaderNodeBsdfRayPortal", poll=object_not_eevee_shader_nodes_poll(context))
+            node_add_menu.add_node_type(layout, "ShaderNodeBsdfSheen", poll=object_not_eevee_shader_nodes_poll(context))
+            node_add_menu.add_node_type(layout, "ShaderNodeBsdfToon", poll=object_not_eevee_shader_nodes_poll(context))
 
 
 class NODE_MT_shader_shader_volume_and_scatter(Menu):
