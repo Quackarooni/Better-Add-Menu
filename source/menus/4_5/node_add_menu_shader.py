@@ -187,12 +187,15 @@ class NODE_MT_shader_color(Menu):
     def draw(self, context):
         layout = self.layout
 
+        node_add_menu.add_node_type(layout, "ShaderNodeCombineColor")
+        node_add_menu.add_color_mix_node(context, layout)
+        node_add_menu.add_node_type(layout, "ShaderNodeSeparateColor")
+        add_separator(layout)
         node_add_menu.add_node_type(layout, "ShaderNodeBrightContrast")
         node_add_menu.add_node_type(layout, "ShaderNodeGamma")
         node_add_menu.add_node_type(layout, "ShaderNodeHueSaturation")
         node_add_menu.add_node_type(layout, "ShaderNodeInvert")
         node_add_menu.add_node_type(layout, "ShaderNodeLightFalloff")
-        node_add_menu.add_color_mix_node(context, layout)
         node_add_menu.add_node_type(layout, "ShaderNodeRGBCurve")
 
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
@@ -215,9 +218,6 @@ class NODE_MT_shader_converter(Menu):
         node_add_menu.add_node_type(layout, "ShaderNodeValToRGB")
         node_add_menu.add_node_type(layout, "ShaderNodeRGBToBW")
         node_add_menu.add_node_type(layout, "ShaderNodeShaderToRGB", poll=object_eevee_shader_nodes_poll(context))
-        add_separator(layout)
-        node_add_menu.add_node_type(layout, "ShaderNodeCombineColor")
-        node_add_menu.add_node_type(layout, "ShaderNodeSeparateColor")
         add_separator(layout)
         node_add_menu.add_node_type(layout, "ShaderNodeBlackbody")
         node_add_menu.add_node_type(layout, "ShaderNodeWavelength")
@@ -275,7 +275,7 @@ class NODE_MT_shader_vector(Menu):
         add_separator(layout)
         node_add_menu.add_node_type(layout, "ShaderNodeNormal")
         node_add_menu.add_node_type(layout, "ShaderNodeNormalMap")
-        
+
 
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
