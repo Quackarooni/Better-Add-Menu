@@ -604,25 +604,58 @@ class NODE_MT_geometry_node_utilities_text(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, "Utilities/Text")
 
 
-class NODE_MT_geometry_node_texture(Menu):
+class NODE_MT_geometry_node_texture(ColumnMenu, Menu):
     bl_idname = "NODE_MT_category_GEO_TEXTURE"
     bl_label = "Texture"
 
     def draw(self, _context):
+        layout = self.layout.row()
+
+        self.draw_column(layout, menus=(NODE_MT_geometry_node_texture_image, NODE_MT_geometry_node_texture_noise))
+        self.draw_column(layout, menus=(NODE_MT_geometry_node_texture_procedural,))
+
+        #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
+
+
+class NODE_MT_geometry_node_texture_image(ColumnMenu, Menu):
+    bl_idname = "NODE_MT_geometry_node_texture_image"
+    bl_label = "Image"
+        
+    header_icon = "IMAGE_DATA"
+
+    def draw(self, _context):
         layout = self.layout
         node_add_menu.add_node_type(layout, "GeometryNodeImageTexture")
-        add_separator(layout)
+
+
+class NODE_MT_geometry_node_texture_noise(ColumnMenu, Menu):
+    bl_idname = "NODE_MT_geometry_node_texture_noise"
+    bl_label = "Noise"
+        
+    header_icon = "MOD_OCEAN"
+
+    def draw(self, _context):
+        layout = self.layout
         node_add_menu.add_node_type(layout, "ShaderNodeTexNoise")
         node_add_menu.add_node_type(layout, "ShaderNodeTexWhiteNoise")
         add_separator(layout)
+        node_add_menu.add_node_type(layout, "ShaderNodeTexMusgrave")
+        node_add_menu.add_node_type(layout, "ShaderNodeTexWave")
+
+
+class NODE_MT_geometry_node_texture_procedural(ColumnMenu, Menu):
+    bl_idname = "NODE_MT_geometry_node_texture_procedural"
+    bl_label = "Procedural"
+        
+    header_icon = "NODE_TEXTURE"
+
+    def draw(self, _context):
+        layout = self.layout
         node_add_menu.add_node_type(layout, "ShaderNodeTexBrick")
         node_add_menu.add_node_type(layout, "ShaderNodeTexChecker")
         node_add_menu.add_node_type(layout, "ShaderNodeTexGradient")
         node_add_menu.add_node_type(layout, "ShaderNodeTexMagic")
-        node_add_menu.add_node_type(layout, "ShaderNodeTexMusgrave")
         node_add_menu.add_node_type(layout, "ShaderNodeTexVoronoi")
-        node_add_menu.add_node_type(layout, "ShaderNodeTexWave")
-        #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
 class NODE_MT_geometry_node_utilities(ColumnMenu, Menu):
@@ -858,6 +891,9 @@ classes = (
     NODE_MT_geometry_node_material,
     NODE_MT_geometry_node_rotation,
     NODE_MT_geometry_node_texture,
+    NODE_MT_geometry_node_texture_image,
+    NODE_MT_geometry_node_texture_noise,
+    NODE_MT_geometry_node_texture_procedural,
     NODE_MT_geometry_node_utilities,
     NODE_MT_geometry_node_utilities_color,
     NODE_MT_geometry_node_utilities_vector,
