@@ -218,8 +218,6 @@ class NODE_MT_shader_converter(Menu):
         add_separator(layout)
         node_add_menu.add_node_type(layout, "ShaderNodeCombineColor")
         node_add_menu.add_node_type(layout, "ShaderNodeSeparateColor")
-        node_add_menu.add_node_type(layout, "ShaderNodeCombineXYZ")
-        node_add_menu.add_node_type(layout, "ShaderNodeSeparateXYZ")
         add_separator(layout)
         node_add_menu.add_node_type(layout, "ShaderNodeBlackbody")
         node_add_menu.add_node_type(layout, "ShaderNodeWavelength")
@@ -262,15 +260,22 @@ class NODE_MT_shader_vector(Menu):
     def draw(self, _context):
         layout = self.layout
 
+        node_add_menu.add_node_type(layout, "ShaderNodeCombineXYZ")
+        node_add_menu.add_node_type(layout, "ShaderNodeSeparateXYZ")
+        add_separator(layout)
+        node_add_menu.add_node_type(layout, "ShaderNodeVectorCurve")
+        node_add_menu.add_node_type(layout, "ShaderNodeVectorMath")
+        node_add_menu.add_node_type(layout, "ShaderNodeVectorRotate")
+        node_add_menu.add_node_type(layout, "ShaderNodeVectorTransform")
+        add_separator(layout)
         node_add_menu.add_node_type(layout, "ShaderNodeBump")
         node_add_menu.add_node_type(layout, "ShaderNodeDisplacement")
         node_add_menu.add_node_type(layout, "ShaderNodeMapping")
+        node_add_menu.add_node_type(layout, "ShaderNodeVectorDisplacement")
+        add_separator(layout)
         node_add_menu.add_node_type(layout, "ShaderNodeNormal")
         node_add_menu.add_node_type(layout, "ShaderNodeNormalMap")
-        node_add_menu.add_node_type(layout, "ShaderNodeVectorCurve")
-        node_add_menu.add_node_type(layout, "ShaderNodeVectorDisplacement")
-        node_add_menu.add_node_type(layout, "ShaderNodeVectorRotate")
-        node_add_menu.add_node_type(layout, "ShaderNodeVectorTransform")
+
 
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 

@@ -215,12 +215,9 @@ class NODE_MT_shader_converter(Menu):
         node_add_menu.add_node_type(layout, "ShaderNodeValToRGB")
         node_add_menu.add_node_type(layout, "ShaderNodeRGBToBW")
         node_add_menu.add_node_type(layout, "ShaderNodeShaderToRGB", poll=object_eevee_shader_nodes_poll(context))
-        node_add_menu.add_node_type_with_searchable_enum(context, layout, "ShaderNodeVectorMath", "operation")
         add_separator(layout)
         node_add_menu.add_node_type(layout, "ShaderNodeCombineColor")
         node_add_menu.add_node_type(layout, "ShaderNodeSeparateColor")
-        node_add_menu.add_node_type(layout, "ShaderNodeCombineXYZ")
-        node_add_menu.add_node_type(layout, "ShaderNodeSeparateXYZ")
         add_separator(layout)
         node_add_menu.add_node_type(layout, "ShaderNodeBlackbody")
         node_add_menu.add_node_type(layout, "ShaderNodeWavelength")
@@ -260,18 +257,25 @@ class NODE_MT_shader_vector(Menu):
     bl_idname = "NODE_MT_category_shader_vector"
     bl_label = "Vector"
 
-    def draw(self, _context):
+    def draw(self, context):
         layout = self.layout
 
+        node_add_menu.add_node_type(layout, "ShaderNodeCombineXYZ")
+        node_add_menu.add_node_type(layout, "ShaderNodeSeparateXYZ")
+        add_separator(layout)
+        node_add_menu.add_node_type(layout, "ShaderNodeVectorCurve")
+        node_add_menu.add_node_type_with_searchable_enum(context, layout, "ShaderNodeVectorMath", "operation")
+        node_add_menu.add_node_type(layout, "ShaderNodeVectorRotate")
+        node_add_menu.add_node_type(layout, "ShaderNodeVectorTransform")
+        add_separator(layout)
         node_add_menu.add_node_type(layout, "ShaderNodeBump")
         node_add_menu.add_node_type(layout, "ShaderNodeDisplacement")
         node_add_menu.add_node_type(layout, "ShaderNodeMapping")
+        node_add_menu.add_node_type(layout, "ShaderNodeVectorDisplacement")
+        add_separator(layout)
         node_add_menu.add_node_type(layout, "ShaderNodeNormal")
         node_add_menu.add_node_type(layout, "ShaderNodeNormalMap")
-        node_add_menu.add_node_type(layout, "ShaderNodeVectorCurve")
-        node_add_menu.add_node_type(layout, "ShaderNodeVectorDisplacement")
-        node_add_menu.add_node_type(layout, "ShaderNodeVectorRotate")
-        node_add_menu.add_node_type(layout, "ShaderNodeVectorTransform")
+        
 
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
