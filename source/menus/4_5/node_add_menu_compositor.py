@@ -333,25 +333,47 @@ class NODE_MT_compositor_transform(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
-class NODE_MT_compositor_texture(Menu):
+class NODE_MT_compositor_texture(ColumnMenu, Menu):
     bl_idname = "NODE_MT_category_compositor_texture"
     bl_label = "Texture"
 
     def draw(self, _context):
-        layout = self.layout
+        layout = self.layout.row()
 
+        self.draw_column(layout, menus=(NODE_MT_compositor_texture_noise,))
+        self.draw_column(layout, menus=(NODE_MT_compositor_texture_procedural,))
+
+        #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
+
+
+class NODE_MT_compositor_texture_noise(ColumnMenu, Menu):
+    bl_idname = "NODE_MT_compositor_texture_noise"
+    bl_label = "Noise"
+        
+    header_icon = "MOD_OCEAN"
+
+    def draw(self, _context):
+        layout = self.layout
         node_add_menu.add_node_type(layout, "ShaderNodeTexNoise")
         node_add_menu.add_node_type(layout, "ShaderNodeTexWhiteNoise")
         add_separator(layout)
+        node_add_menu.add_node_type(layout, "ShaderNodeTexGabor")
+        node_add_menu.add_node_type(layout, "ShaderNodeTexWave")
+
+
+class NODE_MT_compositor_texture_procedural(ColumnMenu, Menu):
+    bl_idname = "NODE_MT_compositor_texture_procedural"
+    bl_label = "Procedural"
+        
+    header_icon = "NODE_TEXTURE"
+
+    def draw(self, _context):
+        layout = self.layout
         node_add_menu.add_node_type(layout, "ShaderNodeTexBrick")
         node_add_menu.add_node_type(layout, "ShaderNodeTexChecker")
-        node_add_menu.add_node_type(layout, "ShaderNodeTexGabor")
         node_add_menu.add_node_type(layout, "ShaderNodeTexGradient")
         node_add_menu.add_node_type(layout, "ShaderNodeTexMagic")
         node_add_menu.add_node_type(layout, "ShaderNodeTexVoronoi")
-        node_add_menu.add_node_type(layout, "ShaderNodeTexWave")
-
-        #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
 class NODE_MT_compositor_utilities(Menu):
@@ -450,6 +472,8 @@ classes = (
     NODE_MT_compositor_keying,
     NODE_MT_compositor_mask,
     NODE_MT_compositor_texture,
+    NODE_MT_compositor_texture_noise,
+    NODE_MT_compositor_texture_procedural,
     NODE_MT_compositor_tracking,
     NODE_MT_compositor_transform,
     NODE_MT_compositor_utilities,
