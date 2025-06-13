@@ -1051,6 +1051,7 @@ classes = (
     NODE_MT_geometry_node_simulation,
     NODE_MT_geometry_node_material,
     NODE_MT_geometry_node_matrix,
+    NODE_MT_geometry_node_rotation,
     NODE_MT_geometry_node_texture,
     NODE_MT_geometry_node_texture_image,
     NODE_MT_geometry_node_texture_noise,
