@@ -41,13 +41,13 @@ class NODE_MT_geometry_node_utilities_color(Menu):
 
     def draw(self, context):
         layout = self.layout
-        node_add_menu.add_node_type(layout, "ShaderNodeBlackbody")
-        node_add_menu.add_node_type(layout, "ShaderNodeValToRGB")
-        node_add_menu.add_node_type(layout, "ShaderNodeRGBCurve")
-        add_separator(layout)
         node_add_menu.add_node_type(layout, "FunctionNodeCombineColor")
         node_add_menu.add_color_mix_node(context, layout)
         node_add_menu.add_node_type(layout, "FunctionNodeSeparateColor")
+        add_separator(layout)
+        node_add_menu.add_node_type(layout, "ShaderNodeBlackbody")
+        node_add_menu.add_node_type(layout, "ShaderNodeValToRGB")
+        node_add_menu.add_node_type(layout, "ShaderNodeRGBCurve")
         #node_add_menu.draw_assets_for_catalog(layout, "Utilities/Color")
 
 
@@ -888,16 +888,16 @@ class NODE_MT_geometry_node_utilities_vector(Menu):
 
     def draw(self, context):
         layout = self.layout
-        node_add_menu.add_node_type(layout, "ShaderNodeVectorCurve")
-        node_add_menu.add_node_type_with_searchable_enum(context, layout, "ShaderNodeVectorMath", "operation")
-        node_add_menu.add_node_type(layout, "ShaderNodeVectorRotate")
-        add_separator(layout)
         node_add_menu.add_node_type(layout, "ShaderNodeCombineXYZ")
         props = node_add_menu.add_node_type(layout, "ShaderNodeMix", label=iface_("Mix Vector"))
         ops = props.settings.add()
         ops.name = "data_type"
         ops.value = "'VECTOR'"
         node_add_menu.add_node_type(layout, "ShaderNodeSeparateXYZ")
+        add_separator(layout)
+        node_add_menu.add_node_type(layout, "ShaderNodeVectorCurve")
+        node_add_menu.add_node_type_with_searchable_enum(context, layout, "ShaderNodeVectorMath", "operation")
+        node_add_menu.add_node_type(layout, "ShaderNodeVectorRotate")
         #node_add_menu.draw_assets_for_catalog(layout, "Utilities/Vector")
 
 
