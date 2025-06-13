@@ -389,17 +389,17 @@ class NODE_MT_compositor_vector(Menu):
         node_add_menu.add_node_type(layout, "ShaderNodeSeparateXYZ")
         add_separator(layout)
 
-        node_add_menu.add_node_type(layout, "CompositorNodeNormal")
         props = node_add_menu.add_node_type(layout, "ShaderNodeMix", label=iface_("Mix Vector"))
+        node_add_menu.add_node_type(layout, "CompositorNodeNormal")
         add_separator(layout)
         
+        node_add_menu.add_node_type(layout, "ShaderNodeVectorCurve")
         node_add_menu.add_node_type_with_searchable_enum(context, layout, "ShaderNodeVectorMath", "operation")
         node_add_menu.add_node_type(layout, "ShaderNodeVectorRotate")
         ops = props.settings.add()
         ops.name = "data_type"
         ops.value = "'VECTOR'"
 
-        node_add_menu.add_node_type(layout, "ShaderNodeVectorCurve")
 
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
