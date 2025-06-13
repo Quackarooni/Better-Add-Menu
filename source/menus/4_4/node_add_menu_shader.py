@@ -295,9 +295,24 @@ class NODE_MT_shader_texture_procedural(ColumnMenu, Menu):
         node_add_menu.add_node_type(layout, "ShaderNodeTexVoronoi")
 
 
-class NODE_MT_shader_vector(Menu):
+class NODE_MT_shader_vector(ColumnMenu, Menu):
     bl_idname = "NODE_MT_category_shader_vector"
     bl_label = "Vector"
+
+    def draw(self, _context):
+        layout = self.layout.row()
+
+        self.draw_column(layout, menus=(NODE_MT_shader_vector_operations,))
+        self.draw_column(layout, menus=(NODE_MT_shader_vector_texture_and_shading,))
+
+        #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
+
+
+class NODE_MT_shader_vector_operations(Menu):
+    bl_idname = "NODE_MT_shader_vector_operations"
+    bl_label = "Operations"
+
+    header_icon = "CON_TRANSFORM_CACHE"
 
     def draw(self, _context):
         layout = self.layout
@@ -313,7 +328,17 @@ class NODE_MT_shader_vector(Menu):
         node_add_menu.add_node_type(layout, "ShaderNodeVectorMath")
         node_add_menu.add_node_type(layout, "ShaderNodeVectorRotate")
         node_add_menu.add_node_type(layout, "ShaderNodeVectorTransform")
-        add_separator(layout)
+
+
+class NODE_MT_shader_vector_texture_and_shading(Menu):
+    bl_idname = "NODE_MT_shader_vector_texture_and_shading"
+    bl_label = "Texture & Shading"
+
+    header_icon = "IMAGE_RGB_ALPHA"
+
+    def draw(self, _context):
+        layout = self.layout
+
         node_add_menu.add_node_type(layout, "ShaderNodeBump")
         node_add_menu.add_node_type(layout, "ShaderNodeDisplacement")
         node_add_menu.add_node_type(layout, "ShaderNodeMapping")
@@ -321,9 +346,6 @@ class NODE_MT_shader_vector(Menu):
         add_separator(layout)
         node_add_menu.add_node_type(layout, "ShaderNodeNormal")
         node_add_menu.add_node_type(layout, "ShaderNodeNormalMap")
-
-
-        #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
 class NODE_MT_shader_script(Menu):
@@ -388,6 +410,8 @@ classes = (
     NODE_MT_shader_texture_misc,
     NODE_MT_shader_texture_procedural,
     NODE_MT_shader_vector,
+    NODE_MT_shader_vector_operations,
+    NODE_MT_shader_vector_texture_and_shading,
     NODE_MT_shader_script,
     NODE_MT_shader_group,
 )
