@@ -887,7 +887,7 @@ classes = (
     NODE_MT_geometry_node_topology,
     NODE_MT_geometry_node_topology_mesh,
     NODE_MT_geometry_node_topology_curve,
-    NODE_MT_geometry_node_simulation,
+    #NODE_MT_geometry_node_simulation,
     NODE_MT_geometry_node_material,
     NODE_MT_geometry_node_rotation,
     NODE_MT_geometry_node_texture,
