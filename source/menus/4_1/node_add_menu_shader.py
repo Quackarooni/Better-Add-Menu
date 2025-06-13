@@ -258,7 +258,11 @@ class NODE_MT_shader_vector(Menu):
     def draw(self, _context):
         layout = self.layout
 
-        node_add_menu.add_node_type(layout, "ShaderNodeCombineXYZ")
+        node_add_menu.add_node_type(layout, "ShaderNodeCombineXYZ")        
+        props = node_add_menu.add_node_type(layout, "ShaderNodeMix", label=iface_("Mix Vector"))
+        ops = props.settings.add()
+        ops.name = "data_type"
+        ops.value = "'VECTOR'"
         node_add_menu.add_node_type(layout, "ShaderNodeSeparateXYZ")
         add_separator(layout)
         node_add_menu.add_node_type(layout, "ShaderNodeVectorCurve")
