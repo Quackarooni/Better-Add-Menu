@@ -151,8 +151,8 @@ class NODE_MT_compositor_color_mix(Menu):
 
     def draw(self, context):
         layout = self.layout
-        node_add_menu.add_color_mix_node(context, layout)
         node_add_menu.add_node_type(layout, "CompositorNodeCombineColor")
+        node_add_menu.add_color_mix_node(context, layout)
         node_add_menu.add_node_type(layout, "CompositorNodeSeparateColor")
         add_separator(layout)
         node_add_menu.add_node_type(layout, "CompositorNodeAlphaOver")
@@ -391,7 +391,7 @@ class NODE_MT_compositor_vector(Menu):
         ops.name = "data_type"
         ops.value = "'VECTOR'"
         node_add_menu.add_node_type(layout, "ShaderNodeSeparateXYZ")
-        
+
         add_separator(layout)
         node_add_menu.add_node_type(layout, "CompositorNodeNormal")
         add_separator(layout)

@@ -147,8 +147,8 @@ class NODE_MT_compositor_color_mix(Menu):
 
     def draw(self, _context):
         layout = self.layout
-        node_add_menu.add_node_type(layout, "CompositorNodeMixRGB", label=iface_("Mix Color"))
         node_add_menu.add_node_type(layout, "CompositorNodeCombineColor")
+        node_add_menu.add_node_type(layout, "CompositorNodeMixRGB", label=iface_("Mix Color"))
         node_add_menu.add_node_type(layout, "CompositorNodeSeparateColor")
         add_separator(layout)
         node_add_menu.add_node_type(layout, "CompositorNodeAlphaOver")
