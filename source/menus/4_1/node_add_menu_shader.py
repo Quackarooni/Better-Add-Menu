@@ -54,40 +54,94 @@ def object_eevee_shader_nodes_poll(context):
             eevee_shader_nodes_poll(context))
 
 
-class NODE_MT_shader_input(Menu):
+class NODE_MT_shader_input(ColumnMenu, Menu):
     bl_idname = "NODE_MT_category_shader_input"
     bl_label = "Input"
+
+    def draw(self, context):
+        layout = self.layout.row()
+
+        self.draw_column(layout, menus=(NODE_MT_shader_input_constant, NODE_MT_shader_input_info,))
+        self.draw_column(layout, menus=(NODE_MT_shader_input_attribute, NODE_MT_shader_input_coordinates,))
+        self.draw_column(layout, menus=(NODE_MT_shader_input_misc,))
+
+        #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
+
+
+class NODE_MT_shader_input_constant(Menu):
+    bl_idname = "NODE_MT_category_shader_input_constant"
+    bl_label = "Constant"
+
+    header_icon = "CON_TRANSFORM"
 
     def draw(self, context):
         layout = self.layout
 
         node_add_menu.add_node_type(layout, "ShaderNodeRGB")
         node_add_menu.add_node_type(layout, "ShaderNodeValue")
-        add_separator(layout)
+
+
+class NODE_MT_shader_input_attribute(Menu):
+    bl_idname = "NODE_MT_category_shader_input_attribute"
+    bl_label = "Attribute"
+
+    header_icon = "GROUP_UVS"
+
+    def draw(self, context):
+        layout = self.layout
+
         node_add_menu.add_node_type(layout, "ShaderNodeAttribute")
         node_add_menu.add_node_type(layout, "ShaderNodeVertexColor")
         node_add_menu.add_node_type(layout, "ShaderNodeUVAlongStroke", poll=line_style_shader_nodes_poll(context))
         node_add_menu.add_node_type(layout, "ShaderNodeUVMap")
-        add_separator(layout)
+
+
+class NODE_MT_shader_input_info(Menu):
+    bl_idname = "NODE_MT_category_shader_input_info"
+    bl_label = "Info"
+
+    header_icon = "INFO"
+
+    def draw(self, context):
+        layout = self.layout
+
         node_add_menu.add_node_type(layout, "ShaderNodeHairInfo")
         node_add_menu.add_node_type(layout, "ShaderNodeObjectInfo")
         node_add_menu.add_node_type(layout, "ShaderNodeParticleInfo")
         node_add_menu.add_node_type(layout, "ShaderNodePointInfo")
         node_add_menu.add_node_type(layout, "ShaderNodeVolumeInfo")
-        add_separator(layout)
+
+
+class NODE_MT_shader_input_coordinates(Menu):
+    bl_idname = "NODE_MT_category_shader_input_coordinates"
+    bl_label = "Coordinates"
+
+    header_icon = "MOD_EDGESPLIT"
+
+    def draw(self, context):
+        layout = self.layout
+
         node_add_menu.add_node_type(layout, "ShaderNodeCameraData")
         node_add_menu.add_node_type(layout, "ShaderNodeNewGeometry")
         node_add_menu.add_node_type(layout, "ShaderNodeTangent")
         node_add_menu.add_node_type(layout, "ShaderNodeTexCoord")
-        add_separator(layout)
+
+
+class NODE_MT_shader_input_misc(Menu):
+    bl_idname = "NODE_MT_category_shader_input_misc"
+    bl_label = "Miscellaneous"
+
+    header_icon = "COLLAPSEMENU"
+
+    def draw(self, context):
+        layout = self.layout
+
         node_add_menu.add_node_type(layout, "ShaderNodeAmbientOcclusion")
         node_add_menu.add_node_type(layout, "ShaderNodeBevel")
         node_add_menu.add_node_type(layout, "ShaderNodeFresnel")
         node_add_menu.add_node_type(layout, "ShaderNodeLayerWeight")
         node_add_menu.add_node_type(layout, "ShaderNodeLightPath")
         node_add_menu.add_node_type(layout, "ShaderNodeWireframe")
-
-        #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
 class NODE_MT_shader_output(Menu):
@@ -391,6 +445,11 @@ class NODE_MT_shader_node_add_all(Menu):
 classes = (
     NODE_MT_shader_node_add_all,
     NODE_MT_shader_input,
+    NODE_MT_shader_input_attribute,
+    NODE_MT_shader_input_constant,
+    NODE_MT_shader_input_coordinates,
+    NODE_MT_shader_input_info,
+    NODE_MT_shader_input_misc,
     NODE_MT_shader_output,
     NODE_MT_shader_color,
     NODE_MT_shader_converter,
