@@ -224,31 +224,71 @@ class NODE_MT_shader_converter(Menu):
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
-class NODE_MT_shader_texture(Menu):
+class NODE_MT_shader_texture(ColumnMenu, Menu):
     bl_idname = "NODE_MT_category_shader_texture"
     bl_label = "Texture"
 
     def draw(self, _context):
-        layout = self.layout
+        layout = self.layout.row()
 
+        self.draw_column(layout, menus=(NODE_MT_shader_texture_image, NODE_MT_shader_texture_noise))
+        self.draw_column(layout, menus=(NODE_MT_shader_texture_procedural, NODE_MT_shader_texture_misc,))
+
+        #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
+
+
+class NODE_MT_shader_texture_image(ColumnMenu, Menu):
+    bl_idname = "NODE_MT_shader_texture_image"
+    bl_label = "Image"
+        
+    header_icon = "IMAGE_DATA"
+
+    def draw(self, _context):
+        layout = self.layout
         node_add_menu.add_node_type(layout, "ShaderNodeTexImage")
-        add_separator(layout)
+        node_add_menu.add_node_type(layout, "ShaderNodeTexEnvironment")
+
+
+class NODE_MT_shader_texture_noise(ColumnMenu, Menu):
+    bl_idname = "NODE_MT_shader_texture_noise"
+    bl_label = "Noise"
+        
+    header_icon = "MOD_OCEAN"
+
+    def draw(self, _context):
+        layout = self.layout
         node_add_menu.add_node_type(layout, "ShaderNodeTexNoise")
         node_add_menu.add_node_type(layout, "ShaderNodeTexWhiteNoise")
         add_separator(layout)
+        node_add_menu.add_node_type(layout, "ShaderNodeTexWave")
+
+
+class NODE_MT_shader_texture_misc(ColumnMenu, Menu):
+    bl_idname = "NODE_MT_shader_texture_misc"
+    bl_label = "Miscellaneous"
+    
+    header_icon = "COLLAPSEMENU"
+
+    def draw(self, _context):
+        layout = self.layout
+        node_add_menu.add_node_type(layout, "ShaderNodeTexIES")
+        node_add_menu.add_node_type(layout, "ShaderNodeTexPointDensity")
+        node_add_menu.add_node_type(layout, "ShaderNodeTexSky")
+
+
+class NODE_MT_shader_texture_procedural(ColumnMenu, Menu):
+    bl_idname = "NODE_MT_shader_texture_procedural"
+    bl_label = "Procedural"
+        
+    header_icon = "NODE_TEXTURE"
+
+    def draw(self, _context):
+        layout = self.layout
         node_add_menu.add_node_type(layout, "ShaderNodeTexBrick")
         node_add_menu.add_node_type(layout, "ShaderNodeTexChecker")
         node_add_menu.add_node_type(layout, "ShaderNodeTexGradient")
         node_add_menu.add_node_type(layout, "ShaderNodeTexMagic")
         node_add_menu.add_node_type(layout, "ShaderNodeTexVoronoi")
-        node_add_menu.add_node_type(layout, "ShaderNodeTexWave")
-        add_separator(layout)
-        node_add_menu.add_node_type(layout, "ShaderNodeTexEnvironment")
-        node_add_menu.add_node_type(layout, "ShaderNodeTexIES")
-        node_add_menu.add_node_type(layout, "ShaderNodeTexPointDensity")
-        node_add_menu.add_node_type(layout, "ShaderNodeTexSky")
-
-        #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
 class NODE_MT_shader_vector(Menu):
@@ -278,7 +318,6 @@ class NODE_MT_shader_vector(Menu):
         node_add_menu.add_node_type(layout, "ShaderNodeNormal")
         node_add_menu.add_node_type(layout, "ShaderNodeNormalMap")
         
-
         #node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
 
 
@@ -338,6 +377,10 @@ classes = (
     NODE_MT_shader_shader_bsdf,
     NODE_MT_shader_shader_volume_and_scatter,
     NODE_MT_shader_texture,
+    NODE_MT_shader_texture_image,
+    NODE_MT_shader_texture_noise,
+    NODE_MT_shader_texture_misc,
+    NODE_MT_shader_texture_procedural,
     NODE_MT_shader_vector,
     NODE_MT_shader_script,
     NODE_MT_shader_group,
