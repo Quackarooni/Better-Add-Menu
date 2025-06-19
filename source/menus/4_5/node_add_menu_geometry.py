@@ -131,7 +131,7 @@ class NODE_MT_geometry_node_curve_operations(Menu):
         layout = self.layout
         node_add_menu.add_node_type(layout, "GeometryNodeCurveToMesh")
         node_add_menu.add_node_type(layout, "GeometryNodeCurveToPoints")
-        node_add_menu.add_node_type(layout, "GeometryNodeGreasePencilToCurves")
+        node_add_menu.add_node_type(layout, "GeometryNodeCurvesToGreasePencil")
         add_separator(layout)
         node_add_menu.add_node_type(layout, "GeometryNodeFillCurve")
         node_add_menu.add_node_type(layout, "GeometryNodeFilletCurve")
