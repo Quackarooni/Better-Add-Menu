@@ -1,6 +1,6 @@
 base_name = "Better Add Menu"
 internal_folder_name = "Better Add Menu"
-addon_version = [1, 3, 0]
+addon_version = [1, 3, 1]
 
 
 [[builds]]
