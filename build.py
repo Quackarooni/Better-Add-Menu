@@ -1,4 +1,5 @@
 import re
+import ast
 import shutil
 import tomllib
 
@@ -39,6 +40,21 @@ def version_to_string(version, depth=None, separator="."):
     return separator.join(map(str, version[:depth]))
 
 
+def get_bl_info(init_path):
+    with open(init_path, 'r') as f:
+        node = ast.parse(f.read())
+
+    n: ast.Module
+    for n in ast.walk(node):
+        for b in n.body:
+            if isinstance(b, ast.Assign) and isinstance(b.value, ast.Dict) and (
+                    any(t.id == 'bl_info' for t in b.targets)):
+                bl_info_dict = ast.literal_eval(b.value)
+                return bl_info_dict
+            
+    raise ValueError('Cannot find bl_info')
+
+
 class PackageConfig:
     version: tuple
     is_legacy: bool
@@ -74,7 +90,7 @@ class BuildConfig:
     def __init__(self, data):
         base_name = str(data["base_name"])
         internal_folder_name = str(data["internal_folder_name"])
-        addon_version = data["addon_version"]
+        addon_version = get_bl_info(Path("source", "__init__.py"))["version"]
 
         shared_data = {
             "base_name" : base_name,
